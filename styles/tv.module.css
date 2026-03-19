@@ -11,8 +11,8 @@
 
 .desktopTv {
   position: relative;
-  width: min(1200px, 96vw);
-  aspect-ratio: 16 / 9;
+  width: min(1080px, 96vw);
+  aspect-ratio: 1030 / 730;
 }
 
 .tvBase {
