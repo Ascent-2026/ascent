@@ -1,17 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { TVScreen } from "./TVScreen";
-import { TVControls } from "./TVControls";
 import { ChannelNavBar } from "./ChannelNavBar";
-import { ChannelIndicator } from "./ChannelIndicator";
 import { useChannel } from "@/hooks/useChannel";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 import styles from "@/styles/tv.module.css";
 
 export function TVFrame({ children }: { children: React.ReactNode }) {
-  const { nextChannel, prevChannel } = useChannel();
+  const { currentIndex, nextChannel, prevChannel } = useChannel();
   const [isPoweredOn, setIsPoweredOn] = useState(true);
 
   useKeyboardNav(
@@ -26,24 +23,45 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.stage}>
       <div className={styles.desktopTv}>
-        <Image
-          src="/tv-base.svg"
-          alt=""
-          aria-hidden="true"
-          className={styles.tvBase}
-          fill
-          sizes="100vw"
-          priority
-        />
+        {/* Base background image - fills entire viewport */}
+        <div className={styles.tvBase} aria-hidden="true" />
 
+        {/* Screen content area */}
         <div className={styles.screenSlot}>
           <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
         </div>
 
+        {/* Volume knob SVG overlay */}
         <div className={styles.volumeSlot}>
-          <TVControls />
+          <svg className={styles.volumeKnob} viewBox="0 0 82 83" fill="none">
+            <image
+              href="/tv-parts/volume-knob.svg"
+              width="100%"
+              height="100%"
+            />
+          </svg>
         </div>
 
+        {/* Power indicator SVG overlay - positioned below power button */}
+        <div
+          className={styles.powerIndicatorSlot}
+          data-powered={isPoweredOn}
+          data-channel={currentIndex}
+        >
+          <svg
+            className={styles.powerIndicator}
+            viewBox="0 0 40 37"
+            fill="none"
+          >
+            <image
+              href="/tv-parts/power-indicator.svg"
+              width="100%"
+              height="100%"
+            />
+          </svg>
+        </div>
+
+        {/* Power button (clickable area) */}
         <button
           type="button"
           className={styles.powerButton}
@@ -54,32 +72,17 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           <span className={styles.srOnly}>Power</span>
         </button>
 
+        {/* Channels bar SVG + navigation */}
         <div className={styles.navSlot}>
+          <svg className={styles.channelsBar} viewBox="0 0 529 36" fill="none">
+            <image
+              href="/tv-parts/channels-bar.svg"
+              width="100%"
+              height="100%"
+            />
+          </svg>
           <ChannelNavBar compact />
         </div>
-      </div>
-
-      <div className={styles.mobileShell}>
-        <div className={styles.mobileHeader}>
-          <span className={styles.mobileBrand}>ASCENT 2026</span>
-          <ChannelIndicator />
-        </div>
-
-        <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
-
-        <div className={styles.mobileControls}>
-          <TVControls />
-          <button
-            type="button"
-            className={styles.mobilePowerButton}
-            onClick={() => setIsPoweredOn((prev) => !prev)}
-            aria-pressed={isPoweredOn}
-          >
-            {isPoweredOn ? "Power ON" : "Power OFF"}
-          </button>
-        </div>
-
-        <ChannelNavBar />
       </div>
     </div>
   );

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CHANNELS } from "@/lib/constants";
+import type { CSSProperties } from "react";
 import { useChannel } from "@/hooks/useChannel";
 import styles from "@/styles/tv.module.css";
 
@@ -11,12 +10,17 @@ interface ChannelNavBarProps {
 }
 
 export function ChannelNavBar({ compact = false }: ChannelNavBarProps) {
-  const pathname = usePathname();
-  const { nextChannel, prevChannel } = useChannel();
+  const { channels, currentIndex, nextChannel, prevChannel } = useChannel();
+
+  const dynamicVars = {
+    "--channel-count": channels.length,
+    "--active-index": currentIndex,
+  } as CSSProperties;
 
   return (
     <div
       className={`${styles.channelBar} ${compact ? styles.channelBarCompact : ""}`}
+      style={dynamicVars}
     >
       <button
         type="button"
@@ -26,17 +30,20 @@ export function ChannelNavBar({ compact = false }: ChannelNavBarProps) {
       >
         ◀
       </button>
-      {CHANNELS.map((ch) => (
-        <Link
-          key={ch.id}
-          href={ch.href}
-          className={`${styles.channelLink} ${
-            pathname.startsWith(ch.href) ? styles.channelLinkActive : ""
-          }`}
-        >
-          {ch.label}
-        </Link>
-      ))}
+      <div className={styles.channelLinksTrack}>
+        {channels.map((ch, index) => (
+          <Link
+            key={ch.id}
+            href={ch.href}
+            className={`${styles.channelLink} ${
+              index === currentIndex ? styles.channelLinkActive : ""
+            }`}
+          >
+            {ch.label}
+          </Link>
+        ))}
+        <span className={styles.channelActiveMarker} aria-hidden="true" />
+      </div>
       <button
         type="button"
         onClick={nextChannel}

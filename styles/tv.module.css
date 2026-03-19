@@ -22,10 +22,12 @@
 }
 
 .tvBase {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: fill;
+  position: absolute;
+  inset: 0;
+  background-image: url("/tv-parts/tv-base.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.45));
 }
 
@@ -39,9 +41,36 @@
 
 .volumeSlot {
   position: absolute;
-  left: 84.05%;
-  top: 69.4%;
-  width: 5.4%;
+  left: 83.7%;
+  top: 42.8%;
+  width: 6.1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.volumeKnob {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.powerIndicatorSlot {
+  position: absolute;
+  left: 85.1%;
+  top: 75.65%;
+  width: 3.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.powerIndicator {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .powerButton {
@@ -66,7 +95,30 @@
   position: absolute;
   left: 15.63%;
   width: 51.36%;
-  top: 81.37%;
+  top: 80.55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navSlot > .channelBar {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  z-index: 10;
+  gap: 0.75rem;
+  padding: 0.16rem 0.75rem;
+}
+
+.channelsBar {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  margin-bottom: 0.25rem;
 }
 
 .screenRoot {
@@ -154,98 +206,94 @@
 }
 
 .channelBar {
+  --channel-count: 1;
+  --active-index: 0;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   padding: 0.27rem 0.4rem;
   border-radius: 0.65rem;
   border: 1px solid rgba(77, 57, 31, 0.5);
-  background: rgba(26, 18, 12, 0.56);
-  box-shadow: inset 0 1px 0 rgba(255, 219, 154, 0.1);
+  background: transparent;
+  box-shadow: none;
 }
 
 .channelBarCompact {
-  padding: 0.22rem 0.35rem;
+  padding: 0.16rem 0.28rem;
 }
 
 .channelStepButton {
-  width: 1.1rem;
-  height: 1rem;
+  width: 1.95rem;
+  height: 1.3rem;
   border-radius: 0.35rem;
-  border: 1px solid rgba(112, 83, 45, 0.45);
-  color: #be9a68;
-  background: rgba(27, 20, 14, 0.82);
+  border: none;
+  color: transparent;
+  background: transparent;
   cursor: pointer;
+  padding: 0.5rem 0.25rem;
+  min-width: 2rem;
+}
+
+.channelLinksTrack {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--channel-count), minmax(0, 1fr));
+  align-items: center;
+  gap: 0.15rem;
 }
 
 .channelLink {
+  position: relative;
   text-decoration: none;
-  font-size: 0.55rem;
-  letter-spacing: 0.05em;
-  color: #b99258;
-  padding: 0.22rem 0.42rem;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(183, 144, 88, 0.95);
+  padding: 0.34rem 0.2rem 0.58rem;
   border-radius: 0.45rem;
   text-transform: uppercase;
+  transition: color 100ms linear;
+  z-index: 3;
 }
 
 .channelLink:hover {
-  color: #e8bd7d;
-  background: rgba(185, 127, 42, 0.2);
+  color: #d9b27d;
+  background: transparent;
 }
 
 .channelLinkActive {
-  color: #06e9ff;
-  text-shadow: 0 0 9px rgba(10, 222, 245, 0.62);
-  background: rgba(5, 147, 160, 0.22);
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.62);
 }
 
-.volumePanel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  color: rgba(60, 46, 24, 0.95);
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-}
-
-.volumeKnob {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 999px;
-  border: 1px solid rgba(73, 58, 36, 0.55);
-  background: transparent;
-  box-shadow: none;
-  cursor: pointer;
-}
-
-.volumeKnobCenter {
+.channelActiveMarker {
   position: absolute;
-  top: 50%;
+  top: 2%;
+  left: calc(
+    ((100% / var(--channel-count)) * var(--active-index)) +
+      ((100% / var(--channel-count)) / 2)
+  );
+  width: min(2.6rem, calc(70% / var(--channel-count)));
+  height: 1.2rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.36), transparent 72%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.channelActiveMarker::after {
+  content: "";
+  position: absolute;
   left: 50%;
-  width: 26%;
-  height: 26%;
+  top: 127%;
+  width: 0.42rem;
+  height: 0.42rem;
+  transform: translateX(-50%);
   border-radius: 999px;
-  background: rgba(69, 51, 34, 0.05);
-  transform: translate(-50%, -50%);
-}
-
-.volumeKnobMarker {
-  position: absolute;
-  top: 4%;
-  left: calc(50% - 1px);
-  width: 2px;
-  height: 20%;
-  border-radius: 999px;
-  background: rgba(235, 204, 164, 0.95);
-  transform-origin: 50% 44%;
-}
-
-.volumeValue {
-  font-weight: 700;
-  color: rgba(90, 70, 45, 0.9);
+  background: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
 }
 
 .mobileShell {
@@ -271,15 +319,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.7rem;
-}
-
-.mobileControls .volumePanel {
-  position: static;
-  width: auto;
-}
-
-.mobileControls .volumeKnob {
-  width: 3rem;
 }
 
 .mobilePowerButton {
@@ -322,5 +361,4 @@
     overflow-x: auto;
     white-space: nowrap;
   }
-
 }
