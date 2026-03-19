@@ -1,28 +1,95 @@
-import { TVScreen } from './TVScreen'
-import { TVControls } from './TVControls'
-import { ChannelIndicator } from './ChannelIndicator'
-import { ChannelNavBar } from './ChannelNavBar'
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { TVScreen } from "./TVScreen";
+import { TVControls } from "./TVControls";
+import { ChannelIndicator } from "./ChannelIndicator";
+import { ChannelNavBar } from "./ChannelNavBar";
+import { useChannel } from "@/hooks/useChannel";
+import { useKeyboardNav } from "@/hooks/useKeyboardNav";
+import styles from "@/styles/tv.module.css";
 
 export function TVFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-neutral-900 flex items-center justify-center p-6">
-      <div className="w-full max-w-4xl border-4 border-neutral-600 rounded-2xl bg-neutral-700 p-5 shadow-2xl">
+  const { nextChannel, prevChannel } = useChannel();
+  const [isPoweredOn, setIsPoweredOn] = useState(true);
 
-        {/* Top header */}
-        <div className="flex items-center justify-between px-2 mb-4">
-          <span className="text-xs font-mono text-neutral-300 tracking-[0.3em]">◆ ASCENT 2026 ◆</span>
+  useKeyboardNav(
+    () => {
+      if (isPoweredOn) nextChannel();
+    },
+    () => {
+      if (isPoweredOn) prevChannel();
+    },
+  );
+
+  return (
+    <div className={styles.stage}>
+      <div className={styles.desktopTv}>
+        <Image
+          src="/tv-base.svg"
+          alt=""
+          aria-hidden="true"
+          className={styles.tvBase}
+          width={1030}
+          height={730}
+          priority
+        />
+
+        <div className={styles.screenSlot}>
+          <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
+        </div>
+
+        <div className={styles.channelIndicatorSlot}>
           <ChannelIndicator />
         </div>
 
-        {/* Screen + side controls */}
-        <div className="flex gap-4">
-          <TVScreen>{children}</TVScreen>
+        <div className={styles.volumeSlot}>
           <TVControls />
         </div>
 
-        {/* Channel nav bar */}
+        <span
+          className={`${styles.powerLed} ${isPoweredOn ? styles.powerLedOn : styles.powerLedOff}`}
+          aria-hidden="true"
+        />
+
+        <button
+          type="button"
+          className={styles.powerButton}
+          onClick={() => setIsPoweredOn((prev) => !prev)}
+          aria-pressed={isPoweredOn}
+          aria-label={isPoweredOn ? "Turn TV off" : "Turn TV on"}
+        >
+          ⏻
+        </button>
+
+        <div className={styles.navSlot}>
+          <ChannelNavBar compact />
+        </div>
+      </div>
+
+      <div className={styles.mobileShell}>
+        <div className={styles.mobileHeader}>
+          <span className={styles.mobileBrand}>ASCENT 2026</span>
+          <ChannelIndicator />
+        </div>
+
+        <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
+
+        <div className={styles.mobileControls}>
+          <TVControls />
+          <button
+            type="button"
+            className={styles.mobilePowerButton}
+            onClick={() => setIsPoweredOn((prev) => !prev)}
+            aria-pressed={isPoweredOn}
+          >
+            {isPoweredOn ? "Power ON" : "Power OFF"}
+          </button>
+        </div>
+
         <ChannelNavBar />
       </div>
     </div>
-  )
+  );
 }

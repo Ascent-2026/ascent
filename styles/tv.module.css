@@ -1,4 +1,156 @@
-/* TV-specific effects — reserved for things not possible in Tailwind */
+.stage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 115%, rgba(255, 174, 66, 0.25), transparent 40%),
+    linear-gradient(180deg, #1e0c00 0%, #090300 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.desktopTv {
+  position: relative;
+  width: min(1200px, 96vw);
+  aspect-ratio: 16 / 9;
+}
+
+.tvBase {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.45));
+}
+
+.screenSlot {
+  position: absolute;
+  left: 6.66%;
+  top: 20.45%;
+  width: 70.68%;
+  height: 58.08%;
+}
+
+.channelIndicatorSlot {
+  position: absolute;
+  top: 7.8%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.25rem;
+  background: rgba(15, 10, 8, 0.44);
+  backdrop-filter: blur(1px);
+}
+
+.volumeSlot {
+  position: absolute;
+  left: 84.05%;
+  top: 69.4%;
+  width: 5.4%;
+}
+
+.powerLed {
+  position: absolute;
+  left: 85.95%;
+  top: 79.45%;
+  width: 0.7%;
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 20, 20, 0.4);
+}
+
+.powerLedOn {
+  background: #4ade80;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.75);
+}
+
+.powerLedOff {
+  background: #576063;
+}
+
+.powerButton {
+  position: absolute;
+  left: 86.95%;
+  top: 78.45%;
+  width: 1.6%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.5rem;
+  line-height: 1;
+  font-weight: 700;
+  color: rgba(30, 24, 17, 0.85);
+  background: transparent;
+  cursor: pointer;
+}
+
+.powerButton[aria-pressed='true'] {
+  color: rgba(16, 41, 20, 0.85);
+}
+
+.powerButton[aria-pressed='false'] {
+  color: rgba(40, 40, 40, 0.7);
+}
+
+.navSlot {
+  position: absolute;
+  left: 15.63%;
+  width: 51.36%;
+  top: 81.37%;
+}
+
+.screenRoot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.4rem;
+  border: 2px solid rgba(47, 29, 82, 0.9);
+  overflow: hidden;
+  background: #0c0230;
+  box-shadow:
+    inset 0 0 0 2px rgba(18, 7, 34, 0.8),
+    inset 0 0 40px rgba(0, 0, 0, 0.38);
+}
+
+.screenGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, rgba(160, 99, 255, 0.1) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(160, 99, 255, 0.1) 96%),
+    radial-gradient(circle at 50% 110%, rgba(136, 30, 255, 0.32), transparent 38%),
+    #14053c;
+  background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+}
+
+.screenVignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, transparent 40%, rgba(4, 0, 14, 0.55) 100%);
+}
+
+.screenContent {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.screenOff {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7c7c7c;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  background: radial-gradient(circle at 50% 20%, rgba(90, 90, 90, 0.2), #020202 64%);
+}
 
 .scanline {
   position: absolute;
@@ -7,35 +159,177 @@
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.05) 2px,
-    rgba(0, 0, 0, 0.05) 4px
+    rgba(6, 6, 6, 0.15) 2px,
+    rgba(6, 6, 6, 0.15) 4px
   );
+  mix-blend-mode: soft-light;
   pointer-events: none;
-  z-index: 10;
+  z-index: 2;
 }
 
-.flicker {
-  animation: flicker 8s infinite;
+.channelBar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.27rem 0.4rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(77, 57, 31, 0.5);
+  background: rgba(26, 18, 12, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 219, 154, 0.1);
 }
 
-@keyframes flicker {
-  0%,
-  100% {
-    opacity: 1;
+.channelBarCompact {
+  padding: 0.22rem 0.35rem;
+}
+
+.channelStepButton {
+  width: 1.1rem;
+  height: 1rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(112, 83, 45, 0.45);
+  color: #be9a68;
+  background: rgba(27, 20, 14, 0.82);
+  cursor: pointer;
+}
+
+.channelLink {
+  text-decoration: none;
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  color: #b99258;
+  padding: 0.22rem 0.42rem;
+  border-radius: 0.45rem;
+  text-transform: uppercase;
+}
+
+.channelLink:hover {
+  color: #e8bd7d;
+  background: rgba(185, 127, 42, 0.2);
+}
+
+.channelLinkActive {
+  color: #06e9ff;
+  text-shadow: 0 0 9px rgba(10, 222, 245, 0.62);
+  background: rgba(5, 147, 160, 0.22);
+}
+
+.volumePanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  color: rgba(60, 46, 24, 0.95);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.volumeKnob {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  border: 1px solid rgba(73, 58, 36, 0.55);
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.volumeKnobCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26%;
+  height: 26%;
+  border-radius: 999px;
+  background: rgba(69, 51, 34, 0.05);
+  transform: translate(-50%, -50%);
+}
+
+.volumeKnobMarker {
+  position: absolute;
+  top: 4%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 20%;
+  border-radius: 999px;
+  background: rgba(235, 204, 164, 0.95);
+  transform-origin: 50% 44%;
+}
+
+.volumeValue {
+  font-weight: 700;
+  color: rgba(90, 70, 45, 0.9);
+}
+
+.mobileShell {
+  display: none;
+}
+
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.mobileBrand {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #d0b188;
+}
+
+.mobileControls {
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.mobileControls .volumePanel {
+  position: static;
+  width: auto;
+}
+
+.mobileControls .volumeKnob {
+  width: 3rem;
+}
+
+.mobilePowerButton {
+  border: 1px solid rgba(183, 133, 51, 0.55);
+  border-radius: 0.5rem;
+  background: rgba(39, 28, 15, 0.85);
+  color: #d7af68;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.68rem;
+}
+
+@media (max-width: 900px) {
+  .desktopTv {
+    display: none;
   }
-  92% {
-    opacity: 1;
+
+  .mobileShell {
+    display: block;
+    width: min(96vw, 700px);
   }
-  93% {
-    opacity: 0.8;
+
+  .screenRoot {
+    min-height: 68vh;
   }
-  94% {
-    opacity: 1;
+
+  .channelBar {
+    margin-top: 0.65rem;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  96% {
-    opacity: 0.9;
-  }
-  97% {
-    opacity: 1;
+
+  .channelIndicatorSlot {
+    position: static;
+    transform: none;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
   }
 }
