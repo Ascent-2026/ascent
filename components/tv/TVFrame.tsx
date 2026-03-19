@@ -42,7 +42,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           </svg>
         </div>
 
-        {/* Power indicator SVG overlay - positioned below power button */}
+        {/* Power knob SVG overlay - positioned below power button */}
         <div
           className={styles.powerIndicatorSlot}
           data-powered={isPoweredOn}
@@ -50,11 +50,11 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         >
           <svg
             className={styles.powerIndicator}
-            viewBox="0 0 40 37"
+            viewBox="0 0 73 73"
             fill="none"
           >
             <image
-              href="/tv-parts/power-indicator.svg"
+              href="/tv-parts/power-knob.svg"
               width="100%"
               height="100%"
             />
