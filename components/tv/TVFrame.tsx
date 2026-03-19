@@ -27,7 +27,11 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         <div className={styles.tvBase} aria-hidden="true" />
 
         {/* Retro Vision Label */}
-        <div className={styles.retroVisionLabel}>RETRO<br/>VISION</div>
+        <div className={styles.retroVisionLabel}>
+          RETRO
+          <br />
+          VISION
+        </div>
 
         {/* Screen content area */}
         <div className={styles.screenSlot}>
@@ -61,15 +65,17 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
             <image href="/tv-parts/power-knob.svg" width="100%" height="100%" />
           </svg>
 
-          {/* Power on/off indicator light */}
-          <div
-            className={`${styles.powerLight} ${isPoweredOn ? styles.powerLightOn : styles.powerLightOff}`}
-            aria-hidden="true"
-          />
-          
-          {/* Power status text */}
-          <div className={styles.powerStatusLabel}>
-            {isPoweredOn ? "ON" : "OFF"}
+          <div className={styles.powerStatusRow}>
+            {/* Power on/off indicator light */}
+            <div
+              className={`${styles.powerLight} ${isPoweredOn ? styles.powerLightOn : styles.powerLightOff}`}
+              aria-hidden="true"
+            />
+
+            {/* Power status text */}
+            <div className={styles.powerStatusLabel}>
+              {isPoweredOn ? "ON" : "OFF"}
+            </div>
           </div>
         </div>
 
