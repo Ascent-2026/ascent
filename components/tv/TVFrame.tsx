@@ -53,12 +53,14 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
             viewBox="0 0 73 73"
             fill="none"
           >
-            <image
-              href="/tv-parts/power-knob.svg"
-              width="100%"
-              height="100%"
-            />
+            <image href="/tv-parts/power-knob.svg" width="100%" height="100%" />
           </svg>
+          
+          {/* Power on/off indicator light */}
+          <div 
+            className={`${styles.powerLight} ${isPoweredOn ? styles.powerLightOn : styles.powerLightOff}`}
+            aria-hidden="true"
+          />
         </div>
 
         {/* Power button (clickable area) */}
