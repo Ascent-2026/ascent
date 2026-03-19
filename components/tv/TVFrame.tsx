@@ -26,6 +26,9 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         {/* Base background image - fills entire viewport */}
         <div className={styles.tvBase} aria-hidden="true" />
 
+        {/* Retro Vision Label */}
+        <div className={styles.retroVisionLabel}>RETRO<br/>VISION</div>
+
         {/* Screen content area */}
         <div className={styles.screenSlot}>
           <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
@@ -33,6 +36,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
 
         {/* Volume knob SVG overlay */}
         <div className={styles.volumeSlot}>
+          <div className={styles.channelLabel}>CHANNEL</div>
           <svg className={styles.volumeKnob} viewBox="0 0 82 83" fill="none">
             <image
               href="/tv-parts/volume-knob.svg"
@@ -48,6 +52,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           data-powered={isPoweredOn}
           data-channel={currentIndex}
         >
+          <div className={styles.powerLabel}>POWER</div>
           <svg
             className={styles.powerIndicator}
             viewBox="0 0 73 73"
@@ -55,12 +60,17 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           >
             <image href="/tv-parts/power-knob.svg" width="100%" height="100%" />
           </svg>
-          
+
           {/* Power on/off indicator light */}
-          <div 
+          <div
             className={`${styles.powerLight} ${isPoweredOn ? styles.powerLightOn : styles.powerLightOff}`}
             aria-hidden="true"
           />
+          
+          {/* Power status text */}
+          <div className={styles.powerStatusLabel}>
+            {isPoweredOn ? "ON" : "OFF"}
+          </div>
         </div>
 
         {/* Power button (clickable area) */}

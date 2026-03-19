@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "PressStart2P";
+  src: url("/PressStart2P-Regular.ttf") format("truetype");
+}
+
 .stage {
   width: 100vw;
   min-height: 100dvh;
@@ -84,13 +89,75 @@
 }
 
 .powerLightOn {
-  background: #ff4444;
-  box-shadow: 0 0 12px rgba(255, 68, 68, 0.8), 0 0 24px rgba(255, 68, 68, 0.4);
+  background: #00ff00;
+  box-shadow:
+    0 0 12px rgba(0, 255, 0, 0.8),
+    0 0 24px rgba(0, 255, 0, 0.4);
 }
 
 .powerLightOff {
-  background: rgba(80, 80, 80, 0.4);
-  box-shadow: none;
+  background: #ff4444;
+  box-shadow:
+    0 0 12px rgba(255, 68, 68, 0.5),
+    0 0 24px rgba(255, 68, 68, 0.2);
+}
+
+/* Text labels */
+.retroVisionLabel {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "PressStart2P", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(183, 144, 88, 0.9);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.channelLabel {
+  position: absolute;
+  left: 83.7%;
+  top: 39.5%;
+  width: 6.1%;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  color: rgba(183, 144, 88, 0.8);
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.powerLabel {
+  position: absolute;
+  left: 84.1%;
+  top: 64.8%;
+  width: 5.1%;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  color: rgba(183, 144, 88, 0.8);
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.powerStatusLabel {
+  position: absolute;
+  left: 84.1%;
+  top: 71%;
+  width: 5.1%;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.4rem;
+  letter-spacing: 0.08em;
+  color: rgba(183, 144, 88, 0.8);
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .powerButton {
