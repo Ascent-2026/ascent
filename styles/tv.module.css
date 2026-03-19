@@ -1,12 +1,17 @@
 .stage {
-  min-height: 100vh;
+  width: 100vw;
+  min-height: 100dvh;
   background:
-    radial-gradient(circle at 50% 115%, rgba(255, 174, 66, 0.25), transparent 40%),
+    radial-gradient(
+      circle at 50% 115%,
+      rgba(255, 174, 66, 0.25),
+      transparent 40%
+    ),
     linear-gradient(180deg, #1e0c00 0%, #090300 75%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem;
+  padding: 0;
 }
 
 .desktopTv {
@@ -31,41 +36,11 @@
   height: 58.08%;
 }
 
-.channelIndicatorSlot {
-  position: absolute;
-  top: 7.8%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.2rem 0.45rem;
-  border-radius: 0.25rem;
-  background: rgba(15, 10, 8, 0.44);
-  backdrop-filter: blur(1px);
-}
-
 .volumeSlot {
   position: absolute;
   left: 84.05%;
   top: 69.4%;
   width: 5.4%;
-}
-
-.powerLed {
-  position: absolute;
-  left: 85.95%;
-  top: 79.45%;
-  width: 0.7%;
-  aspect-ratio: 1 / 1;
-  border-radius: 999px;
-  border: 1px solid rgba(20, 20, 20, 0.4);
-}
-
-.powerLedOn {
-  background: #4ade80;
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.75);
-}
-
-.powerLedOff {
-  background: #576063;
 }
 
 .powerButton {
@@ -76,20 +51,14 @@
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 999px;
-  font-size: 0.5rem;
-  line-height: 1;
-  font-weight: 700;
-  color: rgba(30, 24, 17, 0.85);
+  color: transparent;
   background: transparent;
   cursor: pointer;
 }
 
-.powerButton[aria-pressed='true'] {
-  color: rgba(16, 41, 20, 0.85);
-}
-
-.powerButton[aria-pressed='false'] {
-  color: rgba(40, 40, 40, 0.7);
+.powerButton:focus-visible {
+  outline: 2px solid rgba(0, 229, 255, 0.7);
+  outline-offset: 2px;
 }
 
 .navSlot {
@@ -118,16 +87,28 @@
   background:
     linear-gradient(transparent 95%, rgba(160, 99, 255, 0.1) 96%),
     linear-gradient(90deg, transparent 95%, rgba(160, 99, 255, 0.1) 96%),
-    radial-gradient(circle at 50% 110%, rgba(136, 30, 255, 0.32), transparent 38%),
+    radial-gradient(
+      circle at 50% 110%,
+      rgba(136, 30, 255, 0.32),
+      transparent 38%
+    ),
     #14053c;
-  background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+  background-size:
+    24px 24px,
+    24px 24px,
+    100% 100%,
+    100% 100%;
 }
 
 .screenVignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 45%, transparent 40%, rgba(4, 0, 14, 0.55) 100%);
+  background: radial-gradient(
+    circle at 50% 45%,
+    transparent 40%,
+    rgba(4, 0, 14, 0.55) 100%
+  );
 }
 
 .screenContent {
@@ -149,7 +130,11 @@
   color: #7c7c7c;
   font-size: 0.8rem;
   letter-spacing: 0.16em;
-  background: radial-gradient(circle at 50% 20%, rgba(90, 90, 90, 0.2), #020202 64%);
+  background: radial-gradient(
+    circle at 50% 20%,
+    rgba(90, 90, 90, 0.2),
+    #020202 64%
+  );
 }
 
 .scanline {
@@ -305,6 +290,18 @@
   font-size: 0.68rem;
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 900px) {
   .desktopTv {
     display: none;
@@ -325,11 +322,4 @@
     white-space: nowrap;
   }
 
-  .channelIndicatorSlot {
-    position: static;
-    transform: none;
-    padding: 0;
-    background: transparent;
-    backdrop-filter: none;
-  }
 }

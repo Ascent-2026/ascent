@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { TVScreen } from "./TVScreen";
 import { TVControls } from "./TVControls";
-import { ChannelIndicator } from "./ChannelIndicator";
 import { ChannelNavBar } from "./ChannelNavBar";
+import { ChannelIndicator } from "./ChannelIndicator";
 import { useChannel } from "@/hooks/useChannel";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 import styles from "@/styles/tv.module.css";
@@ -40,18 +40,9 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           <TVScreen isOn={isPoweredOn}>{children}</TVScreen>
         </div>
 
-        <div className={styles.channelIndicatorSlot}>
-          <ChannelIndicator />
-        </div>
-
         <div className={styles.volumeSlot}>
           <TVControls />
         </div>
-
-        <span
-          className={`${styles.powerLed} ${isPoweredOn ? styles.powerLedOn : styles.powerLedOff}`}
-          aria-hidden="true"
-        />
 
         <button
           type="button"
@@ -60,7 +51,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           aria-pressed={isPoweredOn}
           aria-label={isPoweredOn ? "Turn TV off" : "Turn TV on"}
         >
-          ⏻
+          <span className={styles.srOnly}>Power</span>
         </button>
 
         <div className={styles.navSlot}>
