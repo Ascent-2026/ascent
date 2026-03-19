@@ -31,8 +31,8 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           alt=""
           aria-hidden="true"
           className={styles.tvBase}
-          width={1030}
-          height={730}
+          fill
+          sizes="100vw"
           priority
         />
 
