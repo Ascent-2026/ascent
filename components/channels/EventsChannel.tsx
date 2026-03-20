@@ -1,5 +1,6 @@
 import { Card } from './Shared/Card'
 import { Grid } from './Shared/Grid'
+import styles from '@/styles/channelTheme.module.css'
 
 const ALL_EVENTS = [
   // DAY 0
@@ -29,66 +30,60 @@ const ALL_EVENTS = [
 
 export function EventsChannel() {
   return (
-    <div className="p-6 text-neutral-300 font-mono overflow-y-auto h-full scrollbar-hide">
-      <h1 className="text-lg font-bold tracking-[0.3em] uppercase text-center mb-8 text-cyan-400">
-        Events Schedule
-      </h1>
+    <div className={styles.channelRoot}>
+      <div className={styles.channelInner}>
+        <h1 className={`${styles.channelHeading} ${styles.eventsHeading}`}>Events Schedule</h1>
 
-      {/* SECTION: DAY 0 */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-neutral-600 shadow-[0_0_8px_#525252]" />
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">Day 0 — 15 May</h2>
+        {/* SECTION: DAY 0 */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionDot} />
+            <h2 className={styles.sectionTitle}>Day 0 — 15 May</h2>
+          </div>
+          <Grid cols={3}>
+            {ALL_EVENTS.filter((e) => e.day === "Day 0").map((ev, i) => (
+              <Card key={i} title={ev.title} className={styles.eventCard}>
+                <p className={styles.eventTime}>{ev.time}</p>
+                <p className={styles.eventLocation}>@{ev.location}</p>
+                <div className={styles.eventBadge}>Upcoming</div>
+              </Card>
+            ))}
+          </Grid>
         </div>
-        <Grid cols={3}>
-          {ALL_EVENTS.filter(e => e.day === "Day 0").map((ev, i) => (
-            <Card key={i} title={ev.title} className="hover:border-neutral-500 transition-colors">
-              <p className="text-[10px] text-neutral-400 font-bold">{ev.time}</p>
-              <p className="text-[9px] text-neutral-600 italic">@{ev.location}</p>
-              <div className="mt-2 text-[9px] text-neutral-500 border border-neutral-800 rounded px-2 py-0.5 inline-block bg-neutral-950">
-                UPCOMING
-              </div>
-            </Card>
-          ))}
-        </Grid>
-      </div>
-    
-      {/* SECTION: DAY 1 */}
-      <div className="mb-12">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-neutral-600 shadow-[0_0_8px_#06b6d4]" />
-          <h2 className="text-sm font-bold uppercase tracking-widest">Day 1 — 16 May</h2>
-        </div>
-        <Grid cols={3}>
-          {ALL_EVENTS.filter(e => e.day === "Day 1").map((ev, i) => (
-            <Card key={i} title={ev.title} className="hover:border-neutral-500 transition-colors">
-              <p className="text-[10px] text-neutral-500">{ev.time}</p>
-              <p className="text-[9px] text-neutral-600 italic">@{ev.location}</p>
-              <div className="mt-2 text-[9px] text-neutral-500 border border-neutral-800 rounded px-2 py-0.5 inline-block bg-neutral-950">
-                UPCOMING
-              </div>
-            </Card>
-          ))}
-        </Grid>
-      </div>
 
-      {/* SECTION: DAY 2 */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-neutral-600 shadow-[0_0_8px_#525252]" />
-          <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">Day 2 — 17 May</h2>
+        {/* SECTION: DAY 1 */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionDot} />
+            <h2 className={styles.sectionTitle}>Day 1 — 16 May</h2>
+          </div>
+          <Grid cols={3}>
+            {ALL_EVENTS.filter((e) => e.day === "Day 1").map((ev, i) => (
+              <Card key={i} title={ev.title} className={styles.eventCard}>
+                <p className={styles.eventTime}>{ev.time}</p>
+                <p className={styles.eventLocation}>@{ev.location}</p>
+                <div className={styles.eventBadge}>Upcoming</div>
+              </Card>
+            ))}
+          </Grid>
         </div>
-        <Grid cols={3}>
-          {ALL_EVENTS.filter(e => e.day === "Day 2").map((ev, i) => (
-            <Card key={i} title={ev.title} className="hover:border-neutral-500 transition-colors">
-              <p className="text-[10px] text-neutral-500">{ev.time}</p>
-              <p className="text-[9px] text-neutral-600 italic">@{ev.location}</p>
-              <div className="mt-2 text-[9px] text-neutral-500 border border-neutral-800 rounded px-2 py-0.5 inline-block bg-neutral-950">
-                UPCOMING
-              </div>
-            </Card>
-          ))}
-        </Grid>
+
+        {/* SECTION: DAY 2 */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionDot} />
+            <h2 className={styles.sectionTitle}>Day 2 — 17 May</h2>
+          </div>
+          <Grid cols={3}>
+            {ALL_EVENTS.filter((e) => e.day === "Day 2").map((ev, i) => (
+              <Card key={i} title={ev.title} className={styles.eventCard}>
+                <p className={styles.eventTime}>{ev.time}</p>
+                <p className={styles.eventLocation}>@{ev.location}</p>
+                <div className={styles.eventBadge}>Upcoming</div>
+              </Card>
+            ))}
+          </Grid>
+        </div>
       </div>
     </div>
   )
