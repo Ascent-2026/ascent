@@ -30,6 +30,8 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const [isPowerPressed, setIsPowerPressed] = useState(false);
   const [volume, setVolume] = useState(56);
   const [isVolumeAdjusting, setIsVolumeAdjusting] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [switchKey, setSwitchKey] = useState(0);
   const activePointerIdRef = useRef<number | null>(null);
   const knobLastPointerAngleRef = useRef<number | null>(null);
   const knobCurrentAngleRef = useRef<number>(16.2);
@@ -53,6 +55,18 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       clearPowerFxTimer();
     };
   }, []);
+
+  // Increment switchKey on every pathname change — always fires even if
+  // the previous animation hasn't finished yet (no boolean stuck-at-true problem)
+  const isFirstMount = useRef(true);
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    if (!isPoweredOn) return;
+    setSwitchKey(k => k + 1);
+  }, [pathname]);
 
   const syncPageMediaVolume = (nextVolume: number) => {
     const media = document.querySelectorAll("audio, video");
@@ -159,7 +173,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         <div
           className={`${styles.screenSlot} ${powerFx === "turningOn" ? styles.screenSlotPowerOn : ""} ${powerFx === "turningOff" ? styles.screenSlotPowerOff : ""}`}
         >
-          <TVScreen isOn={isPoweredOn} powerFx={powerFx}>
+          <TVScreen isOn={isPoweredOn} powerFx={powerFx} switchKey={switchKey} switchDuration={1200}>
             {children}
           </TVScreen>
         </div>

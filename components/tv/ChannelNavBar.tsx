@@ -50,7 +50,6 @@ export function ChannelNavBar({ compact = false }: ChannelNavBarProps) {
         className={styles.channelStepButton}
         aria-label="Next channel"
       >
-        ▶
       </button>
     </div>
   );
