@@ -22,6 +22,38 @@
   position: relative;
   width: 100vw;
   height: 100dvh;
+  opacity: 0;
+  transform: scale(0.92);
+  transform-origin: center center;
+  will-change: opacity, transform;
+}
+
+/* Fade + zoom when loading overlay hands off (see useGameStore.isGameStarted) */
+.desktopTvReveal {
+  animation: tvFadeZoomIn 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/*
+ * Total 4.2s: opacity 0→1 in the first 2s (47.619% of timeline), then zoom settles.
+ * 2s ÷ 4.2s ≈ 47.619%
+ */
+@keyframes tvFadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  47.619% {
+    opacity: 1;
+    transform: scale(0.975);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.4, 1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .tvBase {
@@ -335,7 +367,7 @@
 }
 
 .screenTurningOn {
-  animation: crtPowerOn 420ms ease-out;
+  animation: crtPowerOn 2s ease-out;
 }
 
 .screenTurningOff {
@@ -343,7 +375,7 @@
 }
 
 .screenSlotPowerOn {
-  animation: screenBloom 420ms ease-out;
+  animation: screenBloom 2s ease-out;
 }
 
 .screenSlotPowerOff {
@@ -738,6 +770,37 @@
 
 .mobileDirectContent {
   display: none;
+  opacity: 0;
+  transform: scale(0.92);
+  transform-origin: center top;
+  will-change: opacity, transform;
+}
+
+.mobileReveal {
+  animation: tvFadeZoomIn 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* After .mobileDirectContent so reduced-motion overrides win */
+@media (prefers-reduced-motion: reduce) {
+  .desktopTv,
+  .mobileDirectContent {
+    transform: scale(1);
+  }
+
+  .desktopTvReveal,
+  .mobileReveal {
+    animation: tvFadeInOnly 1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+
+  @keyframes tvFadeInOnly {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @media (max-width: 900px) {
@@ -761,6 +824,7 @@
 
   .mobileDirectContent {
     display: block;
+    min-height: 100dvh;
   }
 
   .screenRoot {

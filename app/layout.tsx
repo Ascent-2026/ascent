@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Jersey_10, Jersey_25, Archivo, Lexend } from "next/font/google";
+import { LoadingGate } from "@/components/LoadingGate";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,7 +50,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} ${jersey25.variable} ${archivo.variable} ${lexend.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LoadingGate>{children}</LoadingGate>
+      </body>
     </html>
   );
 }

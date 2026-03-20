@@ -9,9 +9,16 @@ import { ChannelNavBar } from "./ChannelNavBar";
 import { useChannel } from "@/hooks/useChannel";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 import { CHANNELS } from "@/lib/constants";
+import { useGameStore } from "@/store/gameStore";
 import styles from "@/styles/tv.module.css";
 
+/** Survives React Strict Mode remounts so CRT boot runs once */
+let tvBootFromLoaderOnce = false;
+
 type PowerFx = "idle" | "turningOn" | "turningOff";
+
+/** Matches CSS `crtPowerOn` / entrance fade so power-on ends when the 1s CRT sequence finishes */
+const POWER_ON_MS = 2000;
 
 /** Dial art: indicator at 6 o'clock at 0°. Min volume → first dot (-90°). Sweep covers all 7 dots (6 intervals). */
 const DIAL_MIN_DEG = -90;
@@ -23,9 +30,10 @@ const DIAL_CENTER_X = 46;
 const DIAL_CENTER_Y = 42.73;
 
 export function TVFrame({ children }: { children: React.ReactNode }) {
+  const isGameStarted = useGameStore((s) => s.isGameStarted);
   const pathname = usePathname();
   const { currentIndex, nextChannel, prevChannel } = useChannel();
-  const [isPoweredOn, setIsPoweredOn] = useState(true);
+  const [isPoweredOn, setIsPoweredOn] = useState(false);
   const [powerFx, setPowerFx] = useState<PowerFx>("idle");
   const [isPowerPressed, setIsPowerPressed] = useState(false);
   const [volume, setVolume] = useState(56);
@@ -55,6 +63,20 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       clearPowerFxTimer();
     };
   }, []);
+
+  /** After loading: zoom starts + CRT power-on + static overlay (same as channel switch) */
+  useEffect(() => {
+    if (!isGameStarted || tvBootFromLoaderOnce) return;
+    tvBootFromLoaderOnce = true;
+    clearPowerFxTimer();
+    setIsPoweredOn(true);
+    setPowerFx("turningOn");
+    // Increment switchKey so TVStaticOverlay fires its noise/static effect on boot
+    setSwitchKey(1);
+    powerFxTimerRef.current = setTimeout(() => {
+      setPowerFx("idle");
+    }, POWER_ON_MS);
+  }, [isGameStarted]);
 
   // Increment switchKey on every pathname change — always fires even if
   // the previous animation hasn't finished yet (no boolean stuck-at-true problem)
@@ -144,7 +166,7 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
     setPowerFx("turningOn");
     powerFxTimerRef.current = setTimeout(() => {
       setPowerFx("idle");
-    }, 420);
+    }, POWER_ON_MS);
   };
 
   useKeyboardNav(
@@ -158,7 +180,9 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
 
   return (
     <div className={styles.stage}>
-      <div className={styles.desktopTv}>
+      <div
+        className={`${styles.desktopTv} ${isGameStarted ? styles.desktopTvReveal : ""}`}
+      >
         {/* Base background image - fills entire viewport */}
         <div className={styles.tvBase} aria-hidden="true" />
 
@@ -313,7 +337,11 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Mobile View - Direct Content (No Wrapper) */}
-      <div className={styles.mobileDirectContent}>{children}</div>
+      <div
+        className={`${styles.mobileDirectContent} ${isGameStarted ? styles.mobileReveal : ""}`}
+      >
+        {children}
+      </div>
     </div>
   );
 }
