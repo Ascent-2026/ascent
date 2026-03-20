@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "@/styles/homepage.module.css";
+import { EventCard } from "@/components/ui/EventCard";
+import { PoweredBox } from "@/components/ui/PoweredBox";
 
 export function HomeChannel() {
   const [timeLeft, setTimeLeft] = useState({
@@ -253,6 +255,74 @@ export function HomeChannel() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Transition Divider */}
+      <div className={styles.transitionDivider} />
+
+      {/* Powered By Section */}
+      <div className={styles.poweredBySection}>
+        <h2 className={styles.poweredByHeading}>POWERED BY</h2>
+
+        {/* Logo Boxes Row */}
+        <div className={styles.logoBoxesContainer}>
+          <PoweredBox />
+          <PoweredBox />
+          <PoweredBox />
+          <PoweredBox />
+          <PoweredBox />
+        </div>
+      </div>
+
+      {/* Events Section */}
+      <div className={styles.eventsSection}>
+        <h2 className={styles.eventsHeading}>EVENTS</h2>
+
+        {/* Event List */}
+        <div className={styles.eventListContainer}>
+          <EventCard
+            title="Opening Ceremony"
+            day={1}
+            time="10:00 AM"
+            status="upcoming"
+            dotColor="#FF6B6B"
+          />
+          <EventCard
+            title="AI Showdown"
+            day={1}
+            time="2:00 PM"
+            status="live"
+            dotColor="#4ECDC4"
+          />
+          <EventCard
+            title="Retro Game Jam"
+            day={1}
+            time="5:00 PM"
+            status="past"
+            dotColor="#FFE66D"
+          />
+          <EventCard
+            title="Cyberpunk Fashion Show"
+            day={2}
+            time="1:00 PM"
+            status="live"
+            dotColor="#FF6B9D"
+          />
+          <EventCard
+            title="Robot Dance-Off"
+            day={2}
+            time="4:00 PM"
+            status="past"
+            dotColor="#FF8C42"
+          />
+          <EventCard
+            title="Closing Gala"
+            day={3}
+            time="7:00 PM"
+            status="live"
+            dotColor="#4ECDC4"
+          />
         </div>
       </div>
     </div>
