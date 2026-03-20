@@ -1,10 +1,21 @@
-import styles from '@/styles/tv.module.css'
+import styles from "@/styles/tv.module.css";
 
-export function TVScreen({ children }: { children: React.ReactNode }) {
+interface TVScreenProps {
+  children: React.ReactNode;
+  isOn?: boolean;
+}
+
+export function TVScreen({ children, isOn = true }: TVScreenProps) {
   return (
-    <div className="relative flex-1 border-2 border-neutral-600 rounded-lg bg-neutral-950 overflow-hidden min-h-80">
+    <div className={styles.screenRoot}>
+      <div className={styles.screenGrid} />
       <div className={styles.scanline} />
-      {children}
+      <div className={styles.screenVignette} />
+      {isOn ? (
+        <div className={styles.screenContent}>{children}</div>
+      ) : (
+        <div className={styles.screenOff}>SIGNAL OFF</div>
+      )}
     </div>
-  )
+  );
 }

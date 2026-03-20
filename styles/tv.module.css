@@ -1,4 +1,282 @@
-/* TV-specific effects — reserved for things not possible in Tailwind */
+@font-face {
+  font-family: "PressStart2P";
+  src: url("/PressStart2P-Regular.ttf") format("truetype");
+}
+
+.stage {
+  width: 100vw;
+  min-height: 100dvh;
+  background:
+    radial-gradient(
+      circle at 50% 115%,
+      rgba(255, 174, 66, 0.25),
+      transparent 40%
+    ),
+    linear-gradient(180deg, #1e0c00 0%, #090300 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.desktopTv {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.tvBase {
+  position: absolute;
+  inset: 0;
+  background-image: url("/tv-parts/tv-base.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.45));
+}
+
+.screenSlot {
+  position: absolute;
+  left: 6.66%;
+  top: 20.45%;
+  width: 70.68%;
+  height: 58.08%;
+}
+
+.volumeSlot {
+  position: absolute;
+  left: 83.7%;
+  top: 42.8%;
+  width: 6.1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.volumeKnob {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.powerIndicatorSlot {
+  position: absolute;
+  left: 84.1%;
+  top: 67.65%;
+  width: 5.1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.powerIndicator {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.powerLight {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  transition: all 150ms ease-in-out;
+  pointer-events: none;
+}
+
+.powerLightOn {
+  background: #00ff00;
+  box-shadow:
+    0 0 12px rgba(0, 255, 0, 0.8),
+    0 0 24px rgba(0, 255, 0, 0.4);
+}
+
+.powerLightOff {
+  background: #ff4444;
+  box-shadow:
+    0 0 12px rgba(255, 68, 68, 0.5),
+    0 0 24px rgba(255, 68, 68, 0.2);
+}
+
+.powerStatusRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  transform: translateX(-12%);
+  margin-top: 0.38rem;
+}
+
+/* Text labels */
+.retroVisionLabel {
+  position: absolute;
+  top: 35.2%;
+  left: 86.8%;
+  transform: translateX(-50%);
+  font-family: "PressStart2P", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  line-height: 1.45;
+  color: #8a7c68;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.channelLabel {
+  position: static;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.09em;
+  color: #706858;
+  text-align: center;
+  pointer-events: none;
+  transform: translateX(-16%);
+  margin-bottom: 0.28rem;
+}
+
+.powerLabel {
+  position: static;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.09em;
+  color: #706858;
+  text-align: center;
+  pointer-events: none;
+  transform: translateX(-14%);
+  margin-bottom: 0.24rem;
+}
+
+.powerStatusLabel {
+  position: static;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.38rem;
+  letter-spacing: 0.08em;
+  color: #706858;
+  text-align: center;
+  pointer-events: none;
+}
+
+.powerButton {
+  position: absolute;
+  left: 86.95%;
+  top: 78.45%;
+  width: 1.6%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 999px;
+  color: transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.powerButton:focus-visible {
+  outline: 2px solid rgba(0, 229, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.navSlot {
+  position: absolute;
+  left: 15.63%;
+  width: 51.36%;
+  top: 80.55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navSlot > .channelBar {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  z-index: 10;
+  gap: 0.75rem;
+  padding: 0.16rem 0.75rem;
+}
+
+.channelsBar {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  margin-bottom: 0.25rem;
+}
+
+.screenRoot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.4rem;
+  border: 2px solid rgba(47, 29, 82, 0.9);
+  overflow: hidden;
+  background: #0c0230;
+  box-shadow:
+    inset 0 0 0 2px rgba(18, 7, 34, 0.8),
+    inset 0 0 40px rgba(0, 0, 0, 0.38);
+}
+
+.screenGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 95%, rgba(160, 99, 255, 0.1) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(160, 99, 255, 0.1) 96%),
+    radial-gradient(
+      circle at 50% 110%,
+      rgba(136, 30, 255, 0.32),
+      transparent 38%
+    ),
+    #14053c;
+  background-size:
+    24px 24px,
+    24px 24px,
+    100% 100%,
+    100% 100%;
+}
+
+.screenVignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 45%,
+    transparent 40%,
+    rgba(4, 0, 14, 0.55) 100%
+  );
+}
+
+.screenContent {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.screenOff {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7c7c7c;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  background: radial-gradient(
+    circle at 50% 20%,
+    rgba(90, 90, 90, 0.2),
+    #020202 64%
+  );
+}
 
 .scanline {
   position: absolute;
@@ -7,35 +285,168 @@
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.05) 2px,
-    rgba(0, 0, 0, 0.05) 4px
+    rgba(6, 6, 6, 0.15) 2px,
+    rgba(6, 6, 6, 0.15) 4px
   );
+  mix-blend-mode: soft-light;
   pointer-events: none;
-  z-index: 10;
+  z-index: 2;
 }
 
-.flicker {
-  animation: flicker 8s infinite;
+.channelBar {
+  --channel-count: 1;
+  --active-index: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.27rem 0.4rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(77, 57, 31, 0.5);
+  background: transparent;
+  box-shadow: none;
 }
 
-@keyframes flicker {
-  0%,
-  100% {
-    opacity: 1;
+.channelBarCompact {
+  padding: 0.16rem 0.28rem;
+}
+
+.channelStepButton {
+  width: 1.95rem;
+  height: 1.3rem;
+  border-radius: 0.35rem;
+  border: none;
+  color: transparent;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem 0.25rem;
+  min-width: 2rem;
+}
+
+.channelLinksTrack {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--channel-count), minmax(0, 1fr));
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.channelLink {
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(183, 144, 88, 0.95);
+  padding: 0.34rem 0.2rem 0.58rem;
+  border-radius: 0.45rem;
+  text-transform: uppercase;
+  transition: color 100ms linear;
+  z-index: 3;
+}
+
+.channelLink:hover {
+  color: #d9b27d;
+  background: transparent;
+}
+
+.channelLinkActive {
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.62);
+}
+
+.channelActiveMarker {
+  position: absolute;
+  top: 2%;
+  left: calc(
+    ((100% / var(--channel-count)) * var(--active-index)) +
+      ((100% / var(--channel-count)) / 2)
+  );
+  width: min(2.6rem, calc(70% / var(--channel-count)));
+  height: 1.2rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.36), transparent 72%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.channelActiveMarker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 127%;
+  width: 0.42rem;
+  height: 0.42rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+.mobileShell {
+  display: none;
+}
+
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.mobileBrand {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #d0b188;
+}
+
+.mobileControls {
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.mobilePowerButton {
+  border: 1px solid rgba(183, 133, 51, 0.55);
+  border-radius: 0.5rem;
+  background: rgba(39, 28, 15, 0.85);
+  color: #d7af68;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.68rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .desktopTv {
+    display: none;
   }
-  92% {
-    opacity: 1;
+
+  .mobileShell {
+    display: block;
+    width: min(96vw, 700px);
   }
-  93% {
-    opacity: 0.8;
+
+  .screenRoot {
+    min-height: 68vh;
   }
-  94% {
-    opacity: 1;
-  }
-  96% {
-    opacity: 0.9;
-  }
-  97% {
-    opacity: 1;
+
+  .channelBar {
+    margin-top: 0.65rem;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
