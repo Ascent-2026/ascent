@@ -1,6 +1,19 @@
 /* ===== PAGE CONTAINER ===== */
 .pageContainer{
-  height: 100%;
+  position: relative;
+}
+
+/* Translucent overlay */
+.pageContainer::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 107, 53, 0.04);
+  pointer-events: none;
+  z-index: 9999;
 }
 
 .topSection {
