@@ -386,6 +386,9 @@
 
 .mobileShell {
   display: none;
+  width: min(96vw, 700px);
+  min-height: 100dvh;
+  padding: 1rem 0.6rem 1.25rem;
 }
 
 .mobileHeader {
@@ -396,9 +399,87 @@
 }
 
 .mobileBrand {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  color: #d0b188;
+  font-family: "PressStart2P", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #8a7c68;
+}
+
+.mobileMenuButton {
+  width: 2.5rem;
+  height: 2.2rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(136, 111, 74, 0.6);
+  background: rgba(34, 18, 8, 0.75);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileMenuIcon,
+.mobileMenuIcon::before,
+.mobileMenuIcon::after {
+  width: 1.2rem;
+  height: 2px;
+  background: #8a7c68;
+  border-radius: 999px;
+  display: block;
+  content: "";
+}
+
+.mobileMenuIcon {
+  position: relative;
+}
+
+.mobileMenuIcon::before {
+  position: absolute;
+  top: -0.34rem;
+  left: 0;
+}
+
+.mobileMenuIcon::after {
+  position: absolute;
+  top: 0.34rem;
+  left: 0;
+}
+
+.mobileMenuPanel {
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid rgba(112, 104, 88, 0.45);
+  border-radius: 0.65rem;
+  padding: 0.65rem;
+  background: rgba(20, 10, 4, 0.82);
+}
+
+.mobileMenuPanelOpen {
+  display: flex;
+}
+
+.mobileMenuLink {
+  font-family: "PressStart2P", monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  color: #706858;
+  text-decoration: none;
+  border-radius: 0.45rem;
+  padding: 0.48rem 0.56rem;
+  background: rgba(65, 43, 23, 0.35);
+}
+
+.mobileMenuLinkActive {
+  color: #d9b27d;
+  background: rgba(94, 63, 34, 0.45);
+}
+
+.mobilePageContent {
+  min-height: calc(100dvh - 5.4rem);
+  border-radius: 0.9rem;
+  border: 1px solid rgba(112, 104, 88, 0.45);
+  background: rgba(11, 4, 1, 0.62);
+  overflow: hidden;
 }
 
 .mobileControls {
@@ -437,7 +518,6 @@
 
   .mobileShell {
     display: block;
-    width: min(96vw, 700px);
   }
 
   .screenRoot {
