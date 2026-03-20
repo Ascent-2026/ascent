@@ -179,6 +179,7 @@
   gap: 0.7rem;
   flex-shrink: 0;
   z-index: 10;
+  margin-left: -3%;
 }
 
 .mainTitle {
@@ -197,9 +198,11 @@
 
 .subtitle {
   font-family: var(--font-jersey25);
-  font-size: clamp(1rem, 1.8dvh, 2rem);
+  font-size: clamp(1rem, 1.4rem, 1.5rem);
   color: #FFFFE7;
   text-align: center;
+  letter-spacing: 0.1rem;
+  margin-left: -0.5%;
 }
 
 /* Decorative Star */
@@ -265,7 +268,7 @@
 
 .countdownTitle {
   font-family: var(--font-jersey10);
-  font-size: clamp(0.85rem, 1.8dvh, 1.8rem);
+  font-size: clamp(1rem, 1.2rem, 1.5rem);
   font-weight: 600;
   color: #FF999A;
   letter-spacing: 0.15em;
