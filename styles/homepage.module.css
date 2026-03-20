@@ -20,7 +20,7 @@
 .topSection {
   display: flex;
   height: 100vh;
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
   background-color: #0C0432;
   background-image: url(/assets/homepage_grid.png);
