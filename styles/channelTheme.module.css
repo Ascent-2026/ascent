@@ -6,6 +6,9 @@
   background:
     radial-gradient(circle at 50% 120%, rgba(255, 153, 154, 0.14), transparent 44%),
     linear-gradient(180deg, rgba(12, 4, 50, 0.98) 0%, rgba(6, 2, 30, 0.98) 100%);
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .channelInner {
