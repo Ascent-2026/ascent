@@ -22,7 +22,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const [isPowerPressed, setIsPowerPressed] = useState(false);
   const [volume, setVolume] = useState(56);
   const [isVolumeAdjusting, setIsVolumeAdjusting] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const activePointerIdRef = useRef<number | null>(null);
   const knobLastPointerAngleRef = useRef<number | null>(null);
   const knobCurrentAngleRef = useRef<number>(16.2);
@@ -268,43 +267,8 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className={styles.mobileShell}>
-        <header className={styles.mobileHeader}>
-          <div className={styles.mobileBrand}>ASCENT 2026</div>
-          <button
-            type="button"
-            className={styles.mobileMenuButton}
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-channel-menu"
-            aria-label="Toggle navigation menu"
-          >
-            <span className={styles.mobileMenuIcon} aria-hidden="true" />
-          </button>
-        </header>
-
-        <nav
-          id="mobile-channel-menu"
-          className={`${styles.mobileMenuPanel} ${isMenuOpen ? styles.mobileMenuPanelOpen : ""}`}
-          aria-label="Mobile channel navigation"
-        >
-          {CHANNELS.map((channel) => {
-            const isActive = pathname === channel.href;
-            return (
-              <Link
-                key={channel.id}
-                href={channel.href}
-                className={`${styles.mobileMenuLink} ${isActive ? styles.mobileMenuLinkActive : ""}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {channel.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <main className={styles.mobilePageContent}>{children}</main>
-      </div>
+      {/* Mobile View - Direct Content (No Wrapper) */}
+      <div className={styles.mobileDirectContent}>{children}</div>
     </div>
   );
 }

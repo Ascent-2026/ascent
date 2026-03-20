@@ -1,9 +1,7 @@
 /* ===== PAGE CONTAINER ===== */
 .pageContainer{
   height: 100%;
-  overflow: hidden;
 }
-
 
 .topSection {
   display: flex;
@@ -127,7 +125,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  z-index: 99;
+  z-index: 199;
 }
 
 .cloudLeft>img{
@@ -587,4 +585,148 @@
 }
 .B2sgreen{
   border: 2px solid rgb(79, 143, 107);
+}
+
+/* ============================================
+   TRANSITION DIVIDER
+   ============================================ */
+.transitionDivider {
+  height: 8em;
+  width: 100%;
+  margin-top: -2rem;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(12, 4, 50) 30%,
+    rgba(12, 4, 50, 0.384) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+/* ============================================
+   POWERED BY SECTION
+   ============================================ */
+.poweredBySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.poweredByHeading {
+  font-family: "PressStart2P", monospace;
+  font-size: 1.5rem;
+  color: #FF999A;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 
+    0 0 20px rgba(255, 153, 154, 0.4),
+    0 0 40px rgba(255, 153, 154, 0.2);
+  font-weight: 400;
+}
+
+.logoBoxesContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   EVENTS SECTION
+   ============================================ */
+.eventsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  padding: 0 1rem 5rem;
+}
+
+.eventsHeading {
+  font-family: "PressStart2P", monospace;
+  font-size: 2rem;
+  color: #00E5FF;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 
+    0 0 25px rgba(0, 229, 255, 0.5),
+    0 0 50px rgba(0, 229, 255, 0.3),
+    0 0 75px rgba(0, 229, 255, 0.15);
+  font-weight: 400;
+}
+
+.eventListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 28rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .poweredByHeading {
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+  }
+
+  .eventsHeading {
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+
+  .logoBoxesContainer {
+    gap: 1rem;
+  }
+
+  .eventListContainer {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .poweredBySection {
+    margin-top: 2rem;
+  }
+
+  .poweredByHeading {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .eventsSection {
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .eventsHeading {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .logoBoxesContainer {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .eventListContainer {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .transitionDivider {
+    height: 3rem;
+  }
 }
