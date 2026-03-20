@@ -322,6 +322,12 @@
   width: 100%;
   height: 100%;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.screenContent::-webkit-scrollbar {
+  display: none;
 }
 
 .screenOff {

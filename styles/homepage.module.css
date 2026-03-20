@@ -1,20 +1,21 @@
 /* ===== PAGE CONTAINER ===== */
-.pageContainer{
-  /* height: 300vh; */
+.pageContainer {
+  width: 100%;
+  min-height: 100%;
 }
-
 
 .topSection {
   display: flex;
-  height: 100vh;
-  width: 85%;
-  margin: 0 auto;
-  background-color: #0C0432;
+  min-height: 100%;
+  height: auto;
+  width: 100%;
+  margin: 0;
+  background-color: #0c0432;
   background-image: url(/assets/homepage_grid.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ===== LEFT STARS COLUMN ===== */
@@ -130,22 +131,22 @@
   z-index: 99;
 }
 
-.cloudLeft>img{
+.cloudLeft > img {
   animation: floatRight 9s ease-in-out infinite;
   /* Start closer to logo, then move outward */
   transform: translateX(30px);
 }
 
-.cloudRight>img {
+.cloudRight > img {
   animation: floatLeft 8s ease-in-out infinite;
   /* Start closer to logo, then move outward */
   transform: translateX(-30px);
 }
-.cloudRight img{
+.cloudRight img {
   width: 200px;
   height: auto;
 }
-.cloudRight{
+.cloudRight {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -186,7 +187,7 @@
 .subtitle {
   font-family: var(--font-jersey25);
   font-size: clamp(1.5rem, 1.75rem, 2.5rem);
-  color: #FFFFE7;
+  color: #ffffe7;
   /* letter-spacing: 0.3em; */
   text-align: center;
 }
@@ -203,8 +204,8 @@
 .decorativeStar img {
   width: 80px;
   height: 80px;
-  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6)) 
-          drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6))
+    drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
 }
 
 /* ===== COUNTDOWN SECTION ===== */
@@ -223,7 +224,6 @@
   justify-content: center;
   flex-shrink: 0;
   z-index: 99;
-
 }
 
 .countdownCloudLeft img,
@@ -240,7 +240,6 @@
 .countdownCloudRight img {
   animation-delay: 1.5s;
   animation: floatLeft 11s ease-in-out infinite;
-
 }
 
 /* ===== COUNTDOWN CONTENT ===== */
@@ -249,14 +248,13 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-
 }
 
 .countdownTitle {
   font-family: var(--font-jersey10);
   font-size: clamp(1rem, 1.5rem, 2rem);
   font-weight: 600;
-  color: #FF999A;
+  color: #ff999a;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -297,13 +295,14 @@
 
 /* Non-uniform shiny border using ::before with conic + linear gradients */
 .countdownBox::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 1rem;
   padding: 1.5px;
-  background: 
-    conic-gradient(from 45deg at 30% 30%,
+  background:
+    conic-gradient(
+      from 45deg at 30% 30%,
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 255, 255, 0.7) 60deg,
       rgba(255, 153, 154, 0.4) 120deg,
@@ -312,19 +311,20 @@
       rgba(255, 255, 255, 0.2) 300deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(110deg,
+    linear-gradient(
+      110deg,
       transparent 0%,
       rgba(255, 255, 255, 0.3) 25%,
       transparent 50%,
       rgba(255, 153, 154, 0.2) 75%,
       transparent 100%
     );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
@@ -333,7 +333,7 @@
 
 /* Directional glow using ::after */
 .countdownBox::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -10px;
   border-radius: 1.3rem;
@@ -355,18 +355,20 @@
     /* Noise texture overlay */
     url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.01'/%3E%3C/svg%3E"),
     /* Base gradient for depth */
-    linear-gradient(135deg, 
-      rgba(249, 67, 0, 0.01) 0%, 
-      rgba(255, 153, 154, 0.02) 40%, 
-      rgba(255, 255, 231, 0.015) 70%,
-      rgba(255, 153, 154, 0.01) 100%
-    );
+    linear-gradient(
+        135deg,
+        rgba(249, 67, 0, 0.01) 0%,
+        rgba(255, 153, 154, 0.02) 40%,
+        rgba(255, 255, 231, 0.015) 70%,
+        rgba(255, 153, 154, 0.01) 100%
+      );
 }
 
 /* Non-uniform border for Type1 - different angle & pattern */
 .countdownBoxType1::before {
-  background: 
-    conic-gradient(from 60deg at 35% 25%,
+  background:
+    conic-gradient(
+      from 60deg at 35% 25%,
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 153, 154, 0.6) 50deg,
       rgba(255, 255, 255, 0.9) 110deg,
@@ -375,7 +377,8 @@
       rgba(255, 255, 231, 0.9) 280deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(120deg,
+    linear-gradient(
+      120deg,
       transparent 0%,
       rgba(255, 153, 154, 0.4) 20%,
       transparent 45%,
@@ -390,27 +393,30 @@
     /* Noise texture overlay */
     url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.01'/%3E%3C/svg%3E"),
     /* Base gradient for depth */
-    linear-gradient(140deg, 
-      rgba(255, 153, 154, 0.015) 0%, 
-      rgba(255, 255, 231, 0.02) 35%, 
-      rgba(255, 255, 231, 0.01) 65%,
-      rgba(255, 153, 154, 0.008) 100%
-    );
+    linear-gradient(
+        140deg,
+        rgba(255, 153, 154, 0.015) 0%,
+        rgba(255, 255, 231, 0.02) 35%,
+        rgba(255, 255, 231, 0.01) 65%,
+        rgba(255, 153, 154, 0.008) 100%
+      );
 }
 
 /* Non-uniform border for Type2 - different angle & pattern */
 .countdownBoxType2::before {
-  background: 
-    conic-gradient(from 80deg at 40% 30%,
+  background:
+    conic-gradient(
+      from 80deg at 40% 30%,
       rgba(255, 255, 255, 0) 0deg,
-      rgba(255, 255, 231, 0.0) 70deg,
+      rgba(255, 255, 231, 0) 70deg,
       rgba(255, 255, 255, 0.5) 130deg,
       rgba(255, 153, 154, 0.3) 190deg,
       rgba(255, 255, 255, 0) 240deg,
       rgba(255, 255, 231, 0.5) 300deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(130deg,
+    linear-gradient(
+      130deg,
       transparent 0%,
       rgba(255, 255, 231, 0.5) 15%,
       transparent 40%,
@@ -437,14 +443,14 @@
   font-family: var(--font-archivo);
   font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 900;
-  color: #FFFFE7;
+  color: #ffffe7;
 }
 
 .timerLabel {
   font-family: var(--font-archivo);
   font-size: clamp(0.625rem, 1.5vw, 0.75rem);
   font-weight: 700;
-  color: #FF999A;
+  color: #ff999a;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -459,8 +465,8 @@
 .registerButton {
   font-family: var(--font-lexend);
   padding: 0.75rem 2rem;
-  background-color: #FFE14D;
-  color: #06061F;
+  background-color: #ffe14d;
+  color: #06061f;
   font-weight: bold;
   font-size: clamp(0.875rem, 2vw, 1rem);
   border-radius: 0.5rem;
@@ -478,8 +484,8 @@
 
 /* ===== EFFECTS ===== */
 .starGlow {
-  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6)) 
-          drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6))
+    drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
 }
 
 @keyframes rotate {
@@ -492,7 +498,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px);
   }
   25% {
@@ -506,7 +513,8 @@
   }
 }
 @keyframes floatLeft {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-30px);
   }
 
@@ -516,7 +524,8 @@
 }
 
 @keyframes floatRight {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(30px);
   }
 
@@ -570,23 +579,21 @@
   }
 }
 
-
-
-.B2Red{
+.B2Red {
   border: 2px solid red;
 }
-.B2Green{
+.B2Green {
   border: 2px solid green;
 }
-.B2Blue{
+.B2Blue {
   border: 2px solid blue;
 }
-.B2Black{
+.B2Black {
   border: 2px solid black;
 }
-.B2White{
+.B2White {
   border: 2px solid white;
 }
-.B2sgreen{
+.B2sgreen {
   border: 2px solid rgb(79, 143, 107);
 }
