@@ -736,6 +736,10 @@
   background-size: 40px 40px;
 }
 
+.mobileDirectContent {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .desktopTv {
     display: none;
