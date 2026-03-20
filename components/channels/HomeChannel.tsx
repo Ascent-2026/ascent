@@ -42,32 +42,32 @@ export function HomeChannel() {
           <Image
             src="/assets/star-small.png"
             alt="star"
-            width={32}
-            height={32}
+            width={38}
+            height={38}
           />
         </div>
         <div className={`${styles.starGlow} ${styles.star2}`}>
           <Image
             src="/assets/star-small.png"
             alt="star"
-            width={28}
-            height={28}
+            width={34}
+            height={34}
           />
         </div>
         <div className={`${styles.starGlow} ${styles.star3}`}>
           <Image
             src="/assets/star-small.png"
             alt="star"
-            width={24}
-            height={24}
+            width={30}
+            height={30}
           />
         </div>
         <div className={`${styles.starGlow} ${styles.star4}`}>
           <Image
             src="/assets/star-small.png"
             alt="star"
-            width={20}
-            height={20}
+            width={26}
+            height={26}
           />
         </div>
       </div>
@@ -215,32 +215,32 @@ export function HomeChannel() {
               <Image
                 src="/assets/star-small.png"
                 alt="star"
-                width={32}
-                height={32}
+                width={38}
+                height={38}
               />
             </div>
             <div className={`${styles.starGlow} ${styles.star2}`}>
               <Image
                 src="/assets/star-small.png"
                 alt="star"
-                width={28}
-                height={28}
+                width={34}
+                height={34}
               />
             </div>
             <div className={`${styles.starGlow} ${styles.star3}`}>
               <Image
                 src="/assets/star-small.png"
                 alt="star"
-                width={24}
-                height={24}
+                width={30}
+                height={30}
               />
             </div>
             <div className={`${styles.starGlow} ${styles.star4}`}>
               <Image
                 src="/assets/star-small.png"
                 alt="star"
-                width={20}
-                height={20}
+                width={26}
+                height={26}
               />
             </div>
           </div>
