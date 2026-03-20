@@ -53,10 +53,39 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
+  overflow: visible;
+}
+
+.volumeKnobStack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: visible;
+}
+
+/* Tick marks: static ring behind the dial — scaled up so marks sit outside the dial edge */
+.volumeDots {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.volumeDotsSvg {
+  width: 112%;
+  height: 112%;
+  pointer-events: none;
 }
 
 .volumeKnobButton {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   width: 100%;
+  height: 100%;
   border: none;
   padding: 0;
   background: transparent;
@@ -64,7 +93,8 @@
   transition:
     transform 120ms ease-out,
     filter 160ms ease;
-  transform-origin: 50% 50%;
+  /* volume-dial.svg: circle center (46, 42.73) in 91×91 viewBox — not geometric box center */
+  transform-origin: calc(100% * 46 / 91) calc(100% * 42.73 / 91);
   touch-action: none;
 }
 
@@ -74,9 +104,10 @@
   filter: drop-shadow(0 0 8px rgba(182, 146, 95, 0.55));
 }
 
-.volumeKnob {
+.volumeDialSvg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  display: block;
   pointer-events: none;
 }
 
@@ -92,9 +123,36 @@
   gap: 0.2rem;
 }
 
+.powerKnobButton {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+  line-height: 0;
+  border-radius: 999px;
+  transition:
+    transform 95ms ease,
+    filter 120ms ease;
+}
+
+.powerKnobButton:focus-visible {
+  outline: 2px solid rgba(0, 229, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.powerKnobButtonPressed,
+.powerKnobButton:active {
+  transform: scale(0.96);
+  filter: brightness(0.92);
+}
+
 .powerIndicator {
   width: 100%;
   height: auto;
+  display: block;
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition:
@@ -130,7 +188,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.28rem;
-  transform: translateX(-12%);
+  width: 100%;
   margin-top: 0.38rem;
 }
 
@@ -158,7 +216,7 @@
   color: #706858;
   text-align: center;
   pointer-events: none;
-  transform: translateX(-16%);
+  width: 100%;
   margin-bottom: 0.28rem;
 }
 
@@ -170,7 +228,7 @@
   color: #706858;
   text-align: center;
   pointer-events: none;
-  transform: translateX(-16%);
+  width: 100%;
   margin-top: 0.24rem;
   margin-bottom: 0;
 }
@@ -183,7 +241,7 @@
   color: #706858;
   text-align: center;
   pointer-events: none;
-  transform: translateX(-14%);
+  width: 100%;
   margin-bottom: 0.24rem;
 }
 
@@ -197,62 +255,70 @@
   pointer-events: none;
 }
 
-.powerButton {
-  position: absolute;
-  left: 81%;
-  top: 78.45%;
-  width: 1.6%;
-  aspect-ratio: 1 / 1;
-  border: none;
-  border-radius: 999px;
-  color: transparent;
-  background: transparent;
-  cursor: pointer;
-  transition:
-    transform 95ms ease,
-    filter 120ms ease;
-}
-
-.powerButtonPressed {
-  transform: scale(0.86);
-  filter: brightness(0.92);
-}
-
-.powerIndicatorSlotPressed .powerIndicator {
-  transform: scale(0.96);
-}
-
-.powerButton:focus-visible {
-  outline: 2px solid rgba(0, 229, 255, 0.7);
-  outline-offset: 2px;
-}
-
 .navSlot {
+  /* Decorative strip + interactive row — fixed height, independent of viewport width */
+  --channel-bar-strip-height: 3rem;
   position: absolute;
   left: 16.7%;
   width: 56.2%;
   top: 80.5%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Wide / ultrawide: TV bezel nav is narrower than full screen — pull bar inward */
+@media (min-width: 1400px) {
+  .navSlot {
+    left: 19%;
+    width: 50%;
+    max-width: 52rem;
+  }
+}
+
+/*
+ * Keep .navSlot left/width matched to .screenSlot at all “desktop TV” sizes.
+ * Do not change position in a mid-width query — that misaligns the bar with the TV recess.
+ * On narrower desktop, only tighten step buttons + gaps so labels stay readable.
+ */
+@media (min-width: 901px) and (max-width: 1399px) {
+  .navSlot > .channelBar {
+    gap: 0.45rem;
+    /* Keep vertical padding same as default — only tighten horizontal */
+    padding: 0.32rem 0.45rem;
+  }
+
+  .navSlot .channelStepButton {
+    min-width: 1.55rem;
+    width: 1.65rem;
+    height: 1.5rem;
+    padding: 0.35rem 0.12rem;
+  }
 }
 
 .navSlot > .channelBar {
   position: absolute;
-  top: 8%;
+  top: 50%;
   left: 0;
   right: 0;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   box-shadow: none;
   z-index: 10;
   gap: 0.75rem;
-  padding: 0.16rem 0.75rem;
+  padding: 0.32rem 0.75rem;
 }
 
+/* Fixed height: do not tie to width (aspect-ratio made the strip shorter when nav got narrower). */
 .channelsBar {
   width: 100%;
-  height: auto;
+  height: var(--channel-bar-strip-height);
+  min-height: var(--channel-bar-strip-height);
+  max-height: var(--channel-bar-strip-height);
+  flex-shrink: 0;
   pointer-events: none;
   margin-bottom: 0.25rem;
 }
@@ -370,7 +436,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.27rem 0.4rem;
+  padding: 0.38rem 0.4rem;
   border-radius: 0.65rem;
   border: 1px solid rgba(77, 57, 31, 0.5);
   background: transparent;
@@ -378,19 +444,20 @@
 }
 
 .channelBarCompact {
-  padding: 0.16rem 0.28rem;
+  /* Fixed vertical padding so bar height does not shrink with viewport width */
+  padding: 0.36rem clamp(0.35rem, 1.2vw, 0.65rem);
 }
 
 .channelStepButton {
-  width: 1.95rem;
-  height: 1.3rem;
+  width: 2.05rem;
+  height: 1.5rem;
   border-radius: 0.35rem;
   border: none;
   color: transparent;
   background: transparent;
   cursor: pointer;
   padding: 0.5rem 0.25rem;
-  min-width: 2rem;
+  min-width: 2.1rem;
 }
 
 .channelLinksTrack {
@@ -399,21 +466,23 @@
   display: grid;
   grid-template-columns: repeat(var(--channel-count), minmax(0, 1fr));
   align-items: center;
-  gap: 0.15rem;
+  gap: clamp(0.08rem, 0.35vw, 0.2rem);
+  min-width: 0;
 }
 
 .channelLink {
   position: relative;
   text-decoration: none;
   text-align: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  font-size: clamp(0.65rem, 0.11vw + 0.6rem, 0.82rem);
+  letter-spacing: 0.05em;
   color: rgba(183, 144, 88, 0.95);
-  padding: 0.34rem 0.2rem 0.58rem;
+  padding: 0.38rem clamp(0.12rem, 0.5vw, 0.22rem) 0.58rem;
   border-radius: 0.45rem;
   text-transform: uppercase;
   transition: color 100ms linear;
   z-index: 3;
+  white-space: nowrap;
 }
 
 .channelLink:hover {
