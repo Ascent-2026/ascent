@@ -1,27 +1,57 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { CHANNELS } from '@/lib/constants'
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import { useChannel } from "@/hooks/useChannel";
+import styles from "@/styles/tv.module.css";
 
-export function ChannelNavBar() {
-  const pathname = usePathname()
+interface ChannelNavBarProps {
+  compact?: boolean;
+}
+
+export function ChannelNavBar({ compact = false }: ChannelNavBarProps) {
+  const { channels, currentIndex, nextChannel, prevChannel } = useChannel();
+
+  const dynamicVars = {
+    "--channel-count": channels.length,
+    "--active-index": currentIndex,
+  } as CSSProperties;
+
   return (
-    <div className="flex items-center gap-1 mt-4 border-t border-neutral-600 pt-3 flex-wrap">
-      <span className="text-[10px] font-mono text-neutral-600 mr-1">⟩</span>
-      {CHANNELS.map(ch => (
-        <Link
-          key={ch.id}
-          href={ch.href}
-          className={`text-[11px] font-mono px-3 py-1 rounded transition-colors ${
-            pathname.startsWith(ch.href)
-              ? 'bg-neutral-500 text-white'
-              : 'text-neutral-400 hover:text-neutral-200 hover:bg-neutral-600'
-          }`}
-        >
-          {ch.label}
-        </Link>
-      ))}
+    <div
+      className={`${styles.channelBar} ${compact ? styles.channelBarCompact : ""}`}
+      style={dynamicVars}
+    >
+      <button
+        type="button"
+        onClick={prevChannel}
+        className={styles.channelStepButton}
+        aria-label="Previous channel"
+      >
+        ◀
+      </button>
+      <div className={styles.channelLinksTrack}>
+        {channels.map((ch, index) => (
+          <Link
+            key={ch.id}
+            href={ch.href}
+            className={`${styles.channelLink} ${
+              index === currentIndex ? styles.channelLinkActive : ""
+            }`}
+          >
+            {ch.label}
+          </Link>
+        ))}
+        <span className={styles.channelActiveMarker} aria-hidden="true" />
+      </div>
+      <button
+        type="button"
+        onClick={nextChannel}
+        className={styles.channelStepButton}
+        aria-label="Next channel"
+      >
+        ▶
+      </button>
     </div>
-  )
+  );
 }
