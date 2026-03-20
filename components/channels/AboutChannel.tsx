@@ -11,19 +11,18 @@ export function AboutChannel() {
         <div className={styles.aboutBody}>
           <div className={styles.aboutCard}>
             <p className={styles.aboutParagraph}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged.
+              AScent 2026 is where builders, dreamers, and problem-solvers gather to experiment with
+              real ideas. Over three high-energy days, participants will step into a retro-futuristic
+              arena designed for coding, design, robotics, and innovation-led collaboration.
             </p>
           </div>
 
           <div className={styles.aboutCard}>
             <p className={styles.aboutParagraph}>
-              It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-              Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
-              including versions of Lorem Ipsum.
+              From hackathons and speaker sessions to challenge tracks and showcase rounds, the goal
+              is simple: turn curiosity into prototypes and prototypes into momentum. Whether you are
+              joining as a first-year learner or an experienced maker, AScent is built to push your
+              skills forward while keeping the vibe fun, bold, and community-first.
             </p>
           </div>
         </div>
