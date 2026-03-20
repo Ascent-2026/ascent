@@ -5,6 +5,28 @@ import Image from "next/image";
 import styles from "@/styles/homepage.module.css";
 import { EventCard } from "@/components/ui/EventCard";
 import { PoweredBox } from "@/components/ui/PoweredBox";
+import { ContactCard } from "@/components/ui/ContactCard";
+
+const CONTACT_MEMBERS = [
+  {
+    name: "Aarav Sharma",
+    role: "Sponsorship & Partnerships",
+    email: "aarav.sharma@ascent2026.in",
+    accent: "orange" as const,
+  },
+  {
+    name: "Ira Mehta",
+    role: "Events & Operations",
+    email: "ira.mehta@ascent2026.in",
+    accent: "cyan" as const,
+  },
+  {
+    name: "Dev Patel",
+    role: "Media & Outreach",
+    email: "dev.patel@ascent2026.in",
+    accent: "pink" as const,
+  },
+];
 
 export function HomeChannel() {
   const [timeLeft, setTimeLeft] = useState({
@@ -323,6 +345,31 @@ export function HomeChannel() {
             status="live"
             dotColor="#4ECDC4"
           />
+        </div>
+      </div>
+
+      <div className={styles.aboutSection}>
+        <h2 className={styles.aboutHeading}>ABOUT US</h2>
+        <p className={styles.aboutText}>
+          AScent 2026 brings creators, coders, and innovators together for a
+          high-energy three-day experience. From hands-on challenges to live
+          showcases, the event is designed to help ideas move from concept to
+          impact in a bold retro-futuristic setting.
+        </p>
+      </div>
+
+      <div className={styles.contactSection}>
+        <h2 className={styles.contactHeading}>CONTACT US</h2>
+        <div className={styles.contactGrid}>
+          {CONTACT_MEMBERS.map((member) => (
+            <ContactCard
+              key={member.email}
+              name={member.name}
+              role={member.role}
+              email={member.email}
+              accent={member.accent}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -28,6 +28,11 @@
   margin-bottom: 1.2rem;
 }
 
+.contactHeading {
+  margin: 2.2rem 0 1.2rem;
+  color: #00e5ff;
+}
+
 .eventsHeading {
   margin-bottom: 2rem;
 }
@@ -35,6 +40,7 @@
 .aboutBody {
   display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .aboutCard {
@@ -54,6 +60,12 @@
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 0.84rem;
   line-height: 1.75;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .section {
@@ -136,5 +148,19 @@
 
   .channelHeading {
     letter-spacing: 0.2em;
+  }
+
+  .aboutBody {
+    grid-template-columns: 1fr;
+  }
+
+  .contactGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
   }
 }
