@@ -36,7 +36,18 @@
   color: #00e5ff;
 }
 
+.eventsRoot {
+  background-color: #110d2e;
+  background-image:
+    radial-gradient(circle, rgba(120, 80, 200, 0.35) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 .eventsHeading {
+  font-family: var(--font-jersey10), monospace;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.18em;
+  color: #00e5ff;
   margin-bottom: 2rem;
 }
 
