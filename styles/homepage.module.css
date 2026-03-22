@@ -559,25 +559,6 @@
   }
 }
 
-.B2Red {
-  border: 2px solid red;
-}
-.B2Green {
-  border: 2px solid green;
-}
-.B2Blue {
-  border: 2px solid blue;
-}
-.B2Black {
-  border: 2px solid black;
-}
-.B2White {
-  border: 2px solid white;
-}
-.B2sgreen {
-  border: 2px solid rgb(79, 143, 107);
-}
-
 .transitionDivider {
   height: 8em;
   width: 100%;

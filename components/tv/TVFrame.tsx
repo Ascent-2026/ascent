@@ -2,14 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TVScreen } from "./TVScreen";
 import { ChannelNavBar } from "./ChannelNavBar";
 import { useChannel } from "@/hooks/useChannel";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
-import { CHANNELS } from "@/lib/constants";
-import { useGameStore } from "@/store/gameStore";
+import { useGameStore, type GameStore } from "@/store/gameStore";
 import styles from "@/styles/tv.module.css";
 
 let tvBootFromLoaderOnce = false;
@@ -26,7 +24,7 @@ const DIAL_CENTER_X = 46;
 const DIAL_CENTER_Y = 42.73;
 
 export function TVFrame({ children }: { children: React.ReactNode }) {
-  const isGameStarted = useGameStore((s) => s.isGameStarted);
+  const isGameStarted = useGameStore((s: GameStore) => s.isGameStarted);
   const pathname = usePathname();
   const { currentIndex, nextChannel, prevChannel } = useChannel();
   const [isPoweredOn, setIsPoweredOn] = useState(false);
@@ -34,7 +32,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const [isPowerPressed, setIsPowerPressed] = useState(false);
   const [volume, setVolume] = useState(0);
   const [isVolumeAdjusting, setIsVolumeAdjusting] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [switchKey, setSwitchKey] = useState(0);
   const activePointerIdRef = useRef<number | null>(null);
   const knobLastPointerAngleRef = useRef<number | null>(null);
