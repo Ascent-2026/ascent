@@ -30,7 +30,7 @@ const ALL_EVENTS = [
 
 export function EventsChannel() {
   return (
-    <div className={styles.channelRoot}>
+    <div className={`${styles.channelRoot} ${styles.eventsRoot}`}>
       <div className={styles.channelInner}>
         <h1 className={`${styles.channelHeading} ${styles.eventsHeading}`}>Events Schedule</h1>
 
