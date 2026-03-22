@@ -1,9 +1,4 @@
-/**
- * Critical static assets to warm the browser cache before the TV / channels mount.
- * Add new URLs here when you introduce large images or SVGs used on first paint.
- */
 export const PRELOAD_ASSET_URLS: string[] = [
-  /* TV shell & controls */
   "/tv-parts/tv-base_2.png",
   "/tv-parts/volume-dots.svg",
   "/tv-parts/volume-dial.svg",
@@ -13,7 +8,6 @@ export const PRELOAD_ASSET_URLS: string[] = [
   "/tv-parts/volume-knob.svg",
   "/tv-parts/TVFrame_main.svg",
   "/tv-base.svg",
-  /* Home channel & CSS backgrounds */
   "/assets/homepage_grid.png",
   "/assets/star-small.png",
   "/assets/cloud-singleNew.png",
@@ -27,7 +21,7 @@ async function preloadOne(url: string): Promise<void> {
     const res = await fetch(url, { cache: "force-cache" });
     if (res.ok) await res.blob();
   } catch {
-    /* Missing asset in dev — do not block the app */
+    // Ignore missing assets so preloading never blocks app startup.
   }
 }
 

@@ -7,7 +7,6 @@ interface TVScreenProps {
   children: React.ReactNode;
   isOn?: boolean;
   powerFx?: "idle" | "turningOn" | "turningOff";
-  /** Increments on every channel switch — restarts the animation even mid-play */
   switchKey?: number;
   switchDuration?: number;
 }
@@ -29,7 +28,6 @@ export function TVScreen({
       <div className={styles.scanline} />
       <div className={styles.screenVignette} />
 
-      {/* key= forces a fresh DOM element on every switch → CSS animation restarts */}
       {isSwitching && (
         <div
           key={switchKey}
