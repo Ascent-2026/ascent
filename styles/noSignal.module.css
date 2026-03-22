@@ -6,7 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #080414;
+  background-color: #0c0432;
+  background-image: url(/assets/homepage_grid.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
   font-family: "PressStart2P", monospace;
 }

@@ -19,6 +19,8 @@
   height: 100%;
   width: 100%;
   margin: 0 auto;
+  padding-top: clamp(1.5rem, 4vh, 3rem);
+  padding-bottom: clamp(1.5rem, 4vh, 3rem);
   background-color: #0c0432;
   background-image: url(/assets/homepage_grid.png);
   background-size: cover;
@@ -84,6 +86,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  gap: clamp(2rem, 8vh, 4rem);
   flex: 1;
   padding: 0.5rem 1.5rem;
 }
@@ -438,30 +441,6 @@
   color: #ff999a;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.registerButton {
-  font-family: var(--font-lexend);
-  padding: clamp(0.55rem, 1.2dvh, 0.85rem) clamp(1.5rem, 3vw, 2.5rem);
-  background-color: #ffe14d;
-  color: #06061f;
-  font-weight: bold;
-  font-size: clamp(0.85rem, 1.8dvh, 1.1rem);
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 25px;
-}
-
-.registerButton:hover {
-  transform: scale(1.05);
 }
 
 .starGlow {
