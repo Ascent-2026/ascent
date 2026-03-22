@@ -7,7 +7,6 @@ export const PRELOAD_ASSET_URLS: string[] = [
   "/tv-parts/power-indicator.svg",
   "/tv-parts/volume-knob.svg",
   "/tv-parts/TVFrame_main.svg",
-  "/tv-base.svg",
   "/assets/homepage_grid.png",
   "/assets/star-small.png",
   "/assets/cloud-singleNew.png",

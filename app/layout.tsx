@@ -6,6 +6,7 @@ import {
   Jersey_25,
   Archivo,
   Lexend,
+  Space_Mono,
 } from "next/font/google";
 import { LoadingGate } from "@/components/LoadingGate";
 import "./globals.css";
@@ -42,6 +43,12 @@ const lexend = Lexend({
   variable: "--font-lexend",
 });
 
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+});
+
 export const metadata: Metadata = {
   title: "ASCENT 2026",
   description: "Change the Ordinary — ASCENT 2026 Techfest",
@@ -55,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} ${jersey25.variable} ${archivo.variable} ${lexend.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${jersey10.variable} ${jersey25.variable} ${archivo.variable} ${lexend.variable} ${spaceMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <LoadingGate>{children}</LoadingGate>
