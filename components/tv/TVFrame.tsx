@@ -36,14 +36,15 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const [isPoweredOn, setIsPoweredOn] = useState(false);
   const [powerFx, setPowerFx] = useState<PowerFx>("idle");
   const [isPowerPressed, setIsPowerPressed] = useState(false);
-  const [volume, setVolume] = useState(56);
+  const [volume, setVolume] = useState(0);
   const [isVolumeAdjusting, setIsVolumeAdjusting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [switchKey, setSwitchKey] = useState(0);
   const activePointerIdRef = useRef<number | null>(null);
   const knobLastPointerAngleRef = useRef<number | null>(null);
-  const knobCurrentAngleRef = useRef<number>(16.2);
+  const knobCurrentAngleRef = useRef<number>(-135);
   const powerFxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const bgAudioRef = useRef<HTMLAudioElement | null>(null);
 
   /** Visual rotation only; interaction still uses -135…+135 via volumeToAngle. */
   const dialDisplayRotation = useMemo(
@@ -58,11 +59,60 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
     }
   };
 
+  /** Tracks whether music *should* be playing (used by the autoplay-unlock listener) */
+  const wantsToPlayRef = useRef(false);
+
+  // Create background audio once on mount + install a one-time click listener
+  // that retries play() if the browser blocked autoplay
   useEffect(() => {
+    const audio = new Audio("/assets/Music.mp3");
+    audio.loop = true;
+    audio.volume = volume / 100;
+    bgAudioRef.current = audio;
+
+    const unlockAutoplay = () => {
+      if (wantsToPlayRef.current && audio.paused) {
+        audio.play().catch(() => {});
+      }
+      document.removeEventListener("click", unlockAutoplay);
+    };
+    document.addEventListener("click", unlockAutoplay);
+
     return () => {
       clearPowerFxTimer();
+      document.removeEventListener("click", unlockAutoplay);
+      audio.pause();
+      bgAudioRef.current = null;
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Sync background music volume whenever the knob changes.
+  // Also retries play() here because a volume-knob interaction IS a direct
+  // user gesture — so the browser will allow it even if initial autoplay was blocked.
+  useEffect(() => {
+    const audio = bgAudioRef.current;
+    if (!audio) return;
+    audio.volume = volume / 100;
+    if (wantsToPlayRef.current && audio.paused) {
+      audio.play().catch(() => {});
+    }
+  }, [volume]);
+
+  // Play / pause background music based on power state
+  useEffect(() => {
+    const audio = bgAudioRef.current;
+    if (!audio) return;
+    if (isPoweredOn) {
+      wantsToPlayRef.current = true;
+      audio.play().catch(() => {
+        // Autoplay blocked — unlockAutoplay listener will retry on next click
+      });
+    } else {
+      wantsToPlayRef.current = false;
+      audio.pause();
+    }
+  }, [isPoweredOn]);
 
   /** After loading: zoom starts + CRT power-on + static overlay (same as channel switch) */
   useEffect(() => {
