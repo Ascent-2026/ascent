@@ -1,5 +1,5 @@
-import { AboutChannel } from '@/components/channels/AboutChannel'
+import { AboutChannel } from "@/components/channels/AboutChannel";
 
 export default function AboutPage() {
-  return <AboutChannel />
+  return <AboutChannel />;
 }

@@ -49,8 +49,7 @@ export function ChannelNavBar({ compact = false }: ChannelNavBarProps) {
         onClick={nextChannel}
         className={styles.channelStepButton}
         aria-label="Next channel"
-      >
-      </button>
+      ></button>
     </div>
   );
 }

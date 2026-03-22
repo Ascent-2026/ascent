@@ -1,4 +1,4 @@
-import styles from '@/styles/noSignal.module.css'
+import styles from "@/styles/noSignal.module.css";
 
 export function SponsorsChannel() {
   return (
@@ -12,5 +12,5 @@ export function SponsorsChannel() {
         <div className={styles.blink}>▌</div>
       </div>
     </div>
-  )
+  );
 }

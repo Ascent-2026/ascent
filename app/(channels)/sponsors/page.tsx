@@ -1,5 +1,5 @@
-import { SponsorsChannel } from '@/components/channels/SponsorsChannel'
+import { SponsorsChannel } from "@/components/channels/SponsorsChannel";
 
 export default function SponsorsPage() {
-  return <SponsorsChannel />
+  return <SponsorsChannel />;
 }

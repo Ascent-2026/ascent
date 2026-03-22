@@ -14,7 +14,9 @@ export function ContactCard({
   accent = "orange",
 }: ContactCardProps) {
   return (
-    <article className={`${styles.contactCard} ${styles[`accent${accent.charAt(0).toUpperCase() + accent.slice(1)}`]}`}>
+    <article
+      className={`${styles.contactCard} ${styles[`accent${accent.charAt(0).toUpperCase() + accent.slice(1)}`]}`}
+    >
       <div className={styles.cardGlow} aria-hidden="true" />
 
       <div className={styles.cardHeader}>
