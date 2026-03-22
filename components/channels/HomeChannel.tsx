@@ -215,10 +215,6 @@ export function HomeChannel() {
                   />
                 </div>
               </div>
-
-              <div className={styles.buttonContainer}>
-                <button className={styles.registerButton}>Register Now</button>
-              </div>
             </div>
 
             <div className={styles.rightStarsColumn}>
