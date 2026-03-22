@@ -5,14 +5,6 @@
   -ms-overflow-style: none;
   padding: 1.8rem 1.6rem 2.4rem;
   color: #e8e4ff;
-
-  background-color: #110d2e;
-  background-image: radial-gradient(
-    circle,
-    rgba(120, 80, 200, 0.35) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
 }
 
 .inner {
