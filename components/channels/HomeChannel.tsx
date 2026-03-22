@@ -61,7 +61,6 @@ export function HomeChannel() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.topSection}>
-        {/* Left Side: Vertical Stars Column */}
         <div className={styles.leftStarsColumn}>
           <div className={styles.starGlow}>
             <Image
@@ -97,18 +96,12 @@ export function HomeChannel() {
           </div>
         </div>
 
-        {/* Right Side: Main Content */}
         <div className={styles.rightContent}>
-          {/* Top: Date Schedule */}
           <div className={styles.dateSchedule}>MAY 15 - MAY 17</div>
 
-          {/* Bottom: Main Hero Section */}
           <div className={styles.heroSection}>
-            {/* Left: Main Center Content */}
             <div className={styles.mainContent}>
-              {/* 1. Top Heading Section */}
               <div className={styles.headingSection}>
-                {/* Left: Single Cloud */}
                 <div className={styles.cloudLeft}>
                   <Image
                     src="/assets/cloud-singleNew.png"
@@ -118,7 +111,6 @@ export function HomeChannel() {
                   />
                 </div>
 
-                {/* Center: Title & Subtitle */}
                 <div className={styles.titleContainer}>
                   <div className={styles.mainTitle}>
                     <Image
@@ -133,9 +125,7 @@ export function HomeChannel() {
                   <h3 className={styles.subtitle}>CHANGE THE ORDINARY</h3>
                 </div>
 
-                {/* Right: Multiple Cloud */}
                 <div className={styles.cloudRight}>
-                  {/* Decorative Star */}
                   <div className={styles.decorativeStar}>
                     <Image
                       src="/assets/star-middle.png"
@@ -154,9 +144,7 @@ export function HomeChannel() {
                 </div>
               </div>
 
-              {/* 2. Countdown Section */}
               <div className={styles.countdownSection}>
-                {/* Left: Single Cloud */}
                 <div className={styles.countdownCloudLeft}>
                   <Image
                     src="/assets/cloud-singleNew.png"
@@ -166,15 +154,12 @@ export function HomeChannel() {
                   />
                 </div>
 
-                {/* Center: Countdown Content */}
                 <div className={styles.countdownContent}>
                   <h2 className={styles.countdownTitle}>
                     COUNTDOWN TO THE MAIN DAY
                   </h2>
 
-                  {/* Timer Boxes */}
                   <div className={styles.timerContainer}>
-                    {/* Days */}
                     <div className={styles.timerWrapper}>
                       <div
                         className={`${styles.countdownBox} ${styles.countdownBoxType1}`}
@@ -186,7 +171,6 @@ export function HomeChannel() {
                       <div className={styles.timerLabel}>DAYS</div>
                     </div>
 
-                    {/* Hours */}
                     <div className={styles.timerWrapper}>
                       <div
                         className={`${styles.countdownBox} ${styles.countdownBoxType2}`}
@@ -198,7 +182,6 @@ export function HomeChannel() {
                       <div className={styles.timerLabel}>HOURS</div>
                     </div>
 
-                    {/* Mins */}
                     <div className={styles.timerWrapper}>
                       <div
                         className={`${styles.countdownBox} ${styles.countdownBoxType1}`}
@@ -210,7 +193,6 @@ export function HomeChannel() {
                       <div className={styles.timerLabel}>MINS</div>
                     </div>
 
-                    {/* Secs */}
                     <div className={styles.timerWrapper}>
                       <div
                         className={`${styles.countdownBox} ${styles.countdownBoxType2}`}
@@ -224,7 +206,6 @@ export function HomeChannel() {
                   </div>
                 </div>
 
-                {/* Right: Single Cloud */}
                 <div className={styles.countdownCloudRight}>
                   <Image
                     src="/assets/cloud-singleNew.png"
@@ -235,13 +216,11 @@ export function HomeChannel() {
                 </div>
               </div>
 
-              {/* 3. Register Button */}
               <div className={styles.buttonContainer}>
                 <button className={styles.registerButton}>Register Now</button>
               </div>
             </div>
 
-            {/* Right: Vertical Stars Column (50% visible) */}
             <div className={styles.rightStarsColumn}>
               <div className={styles.starGlow}>
                 <Image
@@ -280,14 +259,11 @@ export function HomeChannel() {
         </div>
       </div>
 
-      {/* Transition Divider */}
       <div className={styles.transitionDivider} />
 
-      {/* Powered By Section */}
       <div className={styles.poweredBySection}>
         <h2 className={styles.poweredByHeading}>POWERED BY</h2>
 
-        {/* Logo Boxes Row */}
         <div className={styles.logoBoxesContainer}>
           <PoweredBox />
           <PoweredBox />
@@ -297,11 +273,9 @@ export function HomeChannel() {
         </div>
       </div>
 
-      {/* Events Section */}
       <div className={styles.eventsSection}>
         <h2 className={styles.eventsHeading}>EVENTS</h2>
 
-        {/* Event List */}
         <div className={styles.eventListContainer}>
           <EventCard
             title="Opening Ceremony"

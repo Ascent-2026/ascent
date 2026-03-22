@@ -2,35 +2,29 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TVScreen } from "./TVScreen";
 import { ChannelNavBar } from "./ChannelNavBar";
 import { useChannel } from "@/hooks/useChannel";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
-import { CHANNELS } from "@/lib/constants";
-import { useGameStore } from "@/store/gameStore";
+import { useGameStore, type GameStore } from "@/store/gameStore";
 import styles from "@/styles/tv.module.css";
 
-/** Survives React Strict Mode remounts so CRT boot runs once */
 let tvBootFromLoaderOnce = false;
 
 type PowerFx = "idle" | "turningOn" | "turningOff";
 
-/** Matches CSS `crtPowerOn` / entrance fade so power-on ends when the 1s CRT sequence finishes */
 const POWER_ON_MS = 2000;
 
-/** Dial art: indicator at 6 o'clock at 0°. Min volume → first dot (-90°). Sweep covers all 7 dots (6 intervals). */
 const DIAL_MIN_DEG = -90;
 const DIAL_SWEEP_DEG = 280;
 
-/** volume-dial.svg viewBox 0 0 91 91 — circle center is (46, 42.73), not the viewBox center */
 const DIAL_VIEWBOX = 91;
 const DIAL_CENTER_X = 46;
 const DIAL_CENTER_Y = 42.73;
 
 export function TVFrame({ children }: { children: React.ReactNode }) {
-  const isGameStarted = useGameStore((s) => s.isGameStarted);
+  const isGameStarted = useGameStore((s: GameStore) => s.isGameStarted);
   const pathname = usePathname();
   const { currentIndex, nextChannel, prevChannel } = useChannel();
   const [isPoweredOn, setIsPoweredOn] = useState(false);
@@ -38,7 +32,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const [isPowerPressed, setIsPowerPressed] = useState(false);
   const [volume, setVolume] = useState(0);
   const [isVolumeAdjusting, setIsVolumeAdjusting] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [switchKey, setSwitchKey] = useState(0);
   const activePointerIdRef = useRef<number | null>(null);
   const knobLastPointerAngleRef = useRef<number | null>(null);
@@ -46,7 +39,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
   const powerFxTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const bgAudioRef = useRef<HTMLAudioElement | null>(null);
 
-  /** Visual rotation only; interaction still uses -135…+135 via volumeToAngle. */
   const dialDisplayRotation = useMemo(
     () => DIAL_MIN_DEG + (volume / 100) * DIAL_SWEEP_DEG,
     [volume],
@@ -59,11 +51,8 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
     }
   };
 
-  /** Tracks whether music *should* be playing (used by the autoplay-unlock listener) */
   const wantsToPlayRef = useRef(false);
 
-  // Create background audio once on mount + install a one-time click listener
-  // that retries play() if the browser blocked autoplay
   useEffect(() => {
     const audio = new Audio("/assets/Music.mp3");
     audio.loop = true;
@@ -84,12 +73,9 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       audio.pause();
       bgAudioRef.current = null;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sync background music volume whenever the knob changes.
-  // Also retries play() here because a volume-knob interaction IS a direct
-  // user gesture — so the browser will allow it even if initial autoplay was blocked.
   useEffect(() => {
     const audio = bgAudioRef.current;
     if (!audio) return;
@@ -99,37 +85,30 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
     }
   }, [volume]);
 
-  // Play / pause background music based on power state
   useEffect(() => {
     const audio = bgAudioRef.current;
     if (!audio) return;
     if (isPoweredOn) {
       wantsToPlayRef.current = true;
-      audio.play().catch(() => {
-        // Autoplay blocked — unlockAutoplay listener will retry on next click
-      });
+      audio.play().catch(() => {});
     } else {
       wantsToPlayRef.current = false;
       audio.pause();
     }
   }, [isPoweredOn]);
 
-  /** After loading: zoom starts + CRT power-on + static overlay (same as channel switch) */
   useEffect(() => {
     if (!isGameStarted || tvBootFromLoaderOnce) return;
     tvBootFromLoaderOnce = true;
     clearPowerFxTimer();
     setIsPoweredOn(true);
     setPowerFx("turningOn");
-    // Increment switchKey so TVStaticOverlay fires its noise/static effect on boot
     setSwitchKey(1);
     powerFxTimerRef.current = setTimeout(() => {
       setPowerFx("idle");
     }, POWER_ON_MS);
   }, [isGameStarted]);
 
-  // Increment switchKey on every pathname change — always fires even if
-  // the previous animation hasn't finished yet (no boolean stuck-at-true problem)
   const isFirstMount = useRef(true);
   useEffect(() => {
     if (isFirstMount.current) {
@@ -137,7 +116,10 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       return;
     }
     if (!isPoweredOn) return;
-    setSwitchKey(k => k + 1);
+    // Force static/signal effect on every route-based channel switch.
+    setSwitchKey((k) => k + 1);
+    // Intentional: only route changes should trigger the switch effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const syncPageMediaVolume = (nextVolume: number) => {
@@ -233,26 +215,27 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
       <div
         className={`${styles.desktopTv} ${isGameStarted ? styles.desktopTvReveal : ""}`}
       >
-        {/* Base background image - fills entire viewport */}
         <div className={styles.tvBase} aria-hidden="true" />
 
-        {/* Retro Vision Label */}
         <div className={styles.retroVisionLabel}>
           RETRO
           <br />
           VISION
         </div>
 
-        {/* Screen content area */}
         <div
           className={`${styles.screenSlot} ${powerFx === "turningOn" ? styles.screenSlotPowerOn : ""} ${powerFx === "turningOff" ? styles.screenSlotPowerOff : ""}`}
         >
-          <TVScreen isOn={isPoweredOn} powerFx={powerFx} switchKey={switchKey} switchDuration={1200}>
+          <TVScreen
+            isOn={isPoweredOn}
+            powerFx={powerFx}
+            switchKey={switchKey}
+            switchDuration={1200}
+          >
             {children}
           </TVScreen>
         </div>
 
-        {/* Volume: static tick marks + rotating dial */}
         <div className={styles.volumeSlot}>
           <div className={styles.volumeLabel}>VOLUME</div>
           <div className={styles.volumeKnobStack}>
@@ -302,7 +285,10 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
               onWheel={(event) => {
                 event.preventDefault();
                 const direction = event.deltaY < 0 ? 2 : -2;
-                const nextVolume = Math.max(0, Math.min(100, volume + direction));
+                const nextVolume = Math.max(
+                  0,
+                  Math.min(100, volume + direction),
+                );
                 setVolume(nextVolume);
                 knobCurrentAngleRef.current = volumeToAngle(nextVolume);
                 syncPageMediaVolume(nextVolume);
@@ -329,7 +315,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           <div className={styles.volumeStatusLabel}>{volume}%</div>
         </div>
 
-        {/* Power knob: SVG is the clickable surface */}
         <div
           className={styles.powerIndicatorSlot}
           data-powered={isPoweredOn}
@@ -353,7 +338,11 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
               fill="none"
               aria-hidden="true"
             >
-              <image href="/tv-parts/power-knob.svg" width="100%" height="100%" />
+              <image
+                href="/tv-parts/power-knob.svg"
+                width="100%"
+                height="100%"
+              />
             </svg>
           </button>
 
@@ -368,7 +357,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        {/* Channels bar SVG + navigation */}
         <div className={styles.navSlot}>
           <svg
             className={styles.channelsBar}
@@ -386,7 +374,6 @@ export function TVFrame({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* Mobile View - Direct Content (No Wrapper) */}
       <div
         className={`${styles.mobileDirectContent} ${isGameStarted ? styles.mobileReveal : ""}`}
       >

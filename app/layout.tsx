@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Jersey_10, Jersey_25, Archivo, Lexend } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Jersey_10,
+  Jersey_25,
+  Archivo,
+  Lexend,
+} from "next/font/google";
 import { LoadingGate } from "@/components/LoadingGate";
 import "./globals.css";
 
@@ -36,8 +43,8 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: 'ASCENT 2026',
-  description: 'Change the Ordinary — ASCENT 2026 Techfest',
+  title: "ASCENT 2026",
+  description: "Change the Ordinary — ASCENT 2026 Techfest",
 };
 
 export default function RootLayout({

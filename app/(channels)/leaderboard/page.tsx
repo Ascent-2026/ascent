@@ -1,5 +1,5 @@
-import { LeaderboardChannel } from '@/components/channels/LeaderboardChannel'
+import { LeaderboardChannel } from "@/components/channels/LeaderboardChannel";
 
 export default function LeaderboardPage() {
-  return <LeaderboardChannel />
+  return <LeaderboardChannel />;
 }

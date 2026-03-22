@@ -4,7 +4,11 @@
   padding: 1.6rem;
   color: #ffffe7;
   background:
-    radial-gradient(circle at 50% 120%, rgba(255, 153, 154, 0.14), transparent 44%),
+    radial-gradient(
+      circle at 50% 120%,
+      rgba(255, 153, 154, 0.14),
+      transparent 44%
+    ),
     linear-gradient(180deg, rgba(12, 4, 50, 0.98) 0%, rgba(6, 2, 30, 0.98) 100%);
   overflow: auto;
   scrollbar-width: none;
@@ -38,8 +42,11 @@
 
 .eventsRoot {
   background-color: #110d2e;
-  background-image:
-    radial-gradient(circle, rgba(120, 80, 200, 0.35) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(120, 80, 200, 0.35) 1px,
+    transparent 1px
+  );
   background-size: 24px 24px;
 }
 
@@ -58,8 +65,11 @@
 }
 
 .aboutCard {
-  background:
-    linear-gradient(135deg, rgba(255, 153, 154, 0.08) 0%, rgba(255, 255, 231, 0.04) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 153, 154, 0.08) 0%,
+    rgba(255, 255, 231, 0.04) 100%
+  );
   border: 1px solid rgba(255, 255, 231, 0.24);
   border-radius: 0.95rem;
   padding: 1rem 1.1rem;
@@ -111,8 +121,11 @@
 }
 
 .eventCard {
-  background:
-    linear-gradient(135deg, rgba(255, 153, 154, 0.1) 0%, rgba(255, 255, 231, 0.04) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 153, 154, 0.1) 0%,
+    rgba(255, 255, 231, 0.04) 100%
+  );
   border-color: rgba(255, 255, 231, 0.2) !important;
   border-radius: 0.8rem !important;
   transition:

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type GameStore = {
+export type GameStore = {
   loadProgress: number;
   isLoaded: boolean;
   isGameStarted: boolean;
@@ -13,8 +13,7 @@ export const useGameStore = create<GameStore>((set) => ({
   loadProgress: 0,
   isLoaded: false,
   isGameStarted: false,
-  setLoadProgress: (n) =>
-    set({ loadProgress: Math.min(100, Math.max(0, n)) }),
+  setLoadProgress: (n) => set({ loadProgress: Math.min(100, Math.max(0, n)) }),
   setLoaded: (v) => set({ isLoaded: v }),
   startGame: () => set({ isGameStarted: true }),
 }));

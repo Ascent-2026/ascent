@@ -4,12 +4,10 @@ import { useEffect, useRef } from "react";
 import styles from "@/styles/tv.module.css";
 
 interface TVStaticOverlayProps {
-  /** Increments on every channel switch — re-runs the effect even mid-animation */
   switchKey?: number;
   duration?: number;
 }
 
-// ── Singleton AudioContext — created once on first use ─────────
 let sharedAudioCtx: AudioContext | null = null;
 
 function getAudioCtx(): AudioContext | null {
@@ -51,7 +49,7 @@ function playStaticSound(duration: number): () => void {
 
   const gain = ctx.createGain();
   const t = ctx.currentTime;
-  const rampUp  = durationSec * 0.08;
+  const rampUp = durationSec * 0.08;
   const holdEnd = durationSec * 0.28;
 
   gain.gain.setValueAtTime(0, t);
@@ -65,18 +63,23 @@ function playStaticSound(duration: number): () => void {
   source.start(t);
   source.stop(t + durationSec);
 
-  return () => { try { source.stop(); } catch { /* already stopped */ } };
+  return () => {
+    try {
+      source.stop();
+    } catch {}
+  };
 }
 
-// ── Component ──────────────────────────────────────────────────
-export function TVStaticOverlay({ switchKey = 0, duration = 1200 }: TVStaticOverlayProps) {
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const rafRef     = useRef<number | null>(null);
-  const startRef   = useRef<number | null>(null);
-  const stopSound  = useRef<() => void>(() => {});
+export function TVStaticOverlay({
+  switchKey = 0,
+  duration = 1200,
+}: TVStaticOverlayProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const startRef = useRef<number | null>(null);
+  const stopSound = useRef<() => void>(() => {});
 
   useEffect(() => {
-    // switchKey === 0 means page just mounted, no switch yet
     if (switchKey === 0) return;
 
     const canvas = canvasRef.current;
@@ -84,39 +87,37 @@ export function TVStaticOverlay({ switchKey = 0, duration = 1200 }: TVStaticOver
     const ctx = canvas.getContext("2d", { willReadFrequently: false });
     if (!ctx) return;
 
-    // Cancel any in-progress animation immediately
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
     startRef.current = null;
 
-    // Start audio in sync with visual
     stopSound.current();
     stopSound.current = playStaticSound(duration);
 
-    // Size canvas
-    const rect  = canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
     const scale = Math.min(window.devicePixelRatio || 1, 1.5);
-    const W     = Math.round(rect.width  * scale);
-    const H     = Math.round(rect.height * scale);
-    canvas.width  = W;
+    const W = Math.round(rect.width * scale);
+    const H = Math.round(rect.height * scale);
+    canvas.width = W;
     canvas.height = H;
 
     const pixelCount = W * H;
-    const buf    = new ArrayBuffer(pixelCount * 4);
+    const buf = new ArrayBuffer(pixelCount * 4);
     const pixels = new Uint8ClampedArray(buf);
-    const buf32  = new Uint32Array(buf);
+    const buf32 = new Uint32Array(buf);
 
     const draw = (timestamp: number) => {
       if (startRef.current === null) startRef.current = timestamp;
       const progress = Math.min((timestamp - startRef.current) / duration, 1);
 
-      // Fast ramp-in (0–8%), brief hold (8–28%), slow fade-out (28–100%)
       const intensity =
-        progress < 0.08 ? progress / 0.08
-        : progress < 0.28 ? 1
-        : 1 - (progress - 0.28) / 0.72;
+        progress < 0.08
+          ? progress / 0.08
+          : progress < 0.28
+            ? 1
+            : 1 - (progress - 0.28) / 0.72;
 
       const alpha = Math.round(intensity * 255);
       for (let i = 0; i < pixelCount; i++) {
@@ -143,7 +144,6 @@ export function TVStaticOverlay({ switchKey = 0, duration = 1200 }: TVStaticOver
       }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
-  // Re-run every time switchKey changes — even mid-animation
   }, [switchKey, duration]);
 
   return (

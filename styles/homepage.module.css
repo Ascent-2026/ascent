@@ -1,11 +1,9 @@
-/* ===== PAGE CONTAINER ===== */
-.pageContainer{
+.pageContainer {
   position: relative;
 }
 
-/* Translucent overlay */
 .pageContainer::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +19,7 @@
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  background-color: #0C0432;
+  background-color: #0c0432;
   background-image: url(/assets/homepage_grid.png);
   background-size: cover;
   background-position: center;
@@ -29,7 +27,6 @@
   overflow: hidden;
 }
 
-/* ===== LEFT STARS COLUMN ===== */
 .leftStarsColumn {
   display: flex;
   flex-direction: column;
@@ -53,7 +50,6 @@
   opacity: 0.4;
 }
 
-/* ===== RIGHT CONTENT (Main Area) ===== */
 .rightContent {
   display: flex;
   flex-direction: column;
@@ -61,7 +57,6 @@
   width: 96%;
 }
 
-/* ===== DATE SCHEDULE (Top Section) ===== */
 .dateSchedule {
   display: flex;
   justify-content: flex-end;
@@ -75,7 +70,6 @@
   opacity: 0.9;
 }
 
-/* ===== HERO SECTION ===== */
 .heroSection {
   display: flex;
   flex: 1;
@@ -83,7 +77,6 @@
   justify-content: center;
 }
 
-/* ===== MAIN CONTENT (Left side of hero) ===== */
 .mainContent {
   margin-top: 0;
   align-self: stretch;
@@ -95,7 +88,6 @@
   padding: 0.5rem 1.5rem;
 }
 
-/* ===== RIGHT STARS COLUMN (50% visible) ===== */
 .rightStarsColumn {
   display: flex;
   flex-direction: column;
@@ -121,7 +113,6 @@
   opacity: 0.4;
 }
 
-/* ===== HEADING SECTION ===== */
 .headingSection {
   display: flex;
   align-items: center;
@@ -140,23 +131,23 @@
   z-index: 199;
 }
 
-.cloudLeft>img{
+.cloudLeft > img {
   animation: floatRight 9s ease-in-out infinite;
-  /* Start closer to logo, then move outward */
+
   transform: translateX(30px);
 }
 
-.cloudRight>img {
+.cloudRight > img {
   animation: floatLeft 8s ease-in-out infinite;
-  /* Start closer to logo, then move outward */
+
   transform: translateX(-30px);
 }
-.cloudRight img{
+.cloudRight img {
   width: clamp(120px, 16vw, 220px);
   max-height: clamp(80px, 16dvh, 150px);
   height: auto;
 }
-.cloudRight{
+.cloudRight {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -170,7 +161,6 @@
   width: auto;
 }
 
-/* ===== TITLE CONTAINER ===== */
 .titleContainer {
   display: flex;
   flex-direction: column;
@@ -188,26 +178,23 @@
   justify-content: center;
 }
 
-/* Logo Image */
 .logoImage {
   width: 100%;
   height: auto;
   max-width: clamp(250px, 36vw, 600px);
-  transform: scale(1.0);
+  transform: scale(1);
 }
 
 .subtitle {
   font-family: var(--font-jersey25);
   font-size: clamp(1rem, 1.4rem, 1.5rem);
-  color: #FFFFE7;
+  color: #ffffe7;
   text-align: center;
   letter-spacing: 0.1rem;
   margin-left: -0.5%;
 }
 
-/* Decorative Star */
 .decorativeStar {
-  /* position: absolute; */
   top: -10px;
   right: 10%;
   z-index: 20;
@@ -217,11 +204,10 @@
 .decorativeStar img {
   width: clamp(50px, 7dvh, 90px);
   height: auto;
-  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6)) 
-          drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6))
+    drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
 }
 
-/* ===== COUNTDOWN SECTION ===== */
 .countdownSection {
   display: flex;
   align-items: center;
@@ -237,7 +223,6 @@
   justify-content: center;
   flex-shrink: 0;
   z-index: 99;
-
 }
 
 .countdownCloudLeft img,
@@ -255,10 +240,8 @@
 .countdownCloudRight img {
   animation-delay: 1.5s;
   animation: floatLeft 11s ease-in-out infinite;
-
 }
 
-/* ===== COUNTDOWN CONTENT ===== */
 .countdownContent {
   display: flex;
   flex-direction: column;
@@ -270,12 +253,11 @@
   font-family: var(--font-jersey10);
   font-size: clamp(1rem, 1.2rem, 1.5rem);
   font-weight: 600;
-  color: #FF999A;
+  color: #ff999a;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
-/* ===== TIMER CONTAINER ===== */
 .timerContainer {
   display: flex;
   gap: clamp(0.6rem, 1.2vw, 1.4rem);
@@ -283,7 +265,6 @@
   justify-content: center;
 }
 
-/* ===== TIMER WRAPPER (Box + Label) ===== */
 .timerWrapper {
   display: flex;
   flex-direction: column;
@@ -291,7 +272,6 @@
   gap: 0.2rem;
 }
 
-/* ===== COUNTDOWN BOX ===== */
 .countdownBox {
   display: flex;
   flex-direction: column;
@@ -309,15 +289,15 @@
   z-index: 1;
 }
 
-/* Non-uniform shiny border using ::before with conic + linear gradients */
 .countdownBox::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 1rem;
   padding: 1.5px;
-  background: 
-    conic-gradient(from 45deg at 30% 30%,
+  background:
+    conic-gradient(
+      from 45deg at 30% 30%,
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 255, 255, 0.7) 60deg,
       rgba(255, 153, 154, 0.4) 120deg,
@@ -326,28 +306,28 @@
       rgba(255, 255, 255, 0.2) 300deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(110deg,
+    linear-gradient(
+      110deg,
       transparent 0%,
       rgba(255, 255, 255, 0.3) 25%,
       transparent 50%,
       rgba(255, 153, 154, 0.2) 75%,
       transparent 100%
     );
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
 }
 
-/* Directional glow using ::after */
 .countdownBox::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -10px;
   border-radius: 1.3rem;
@@ -363,24 +343,22 @@
   z-index: -1;
 }
 
-/* Type 1: Days & Mins - Layered pink background with depth */
 .countdownBoxType1 {
-  background: 
-    /* Noise texture overlay */
+  background:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.01'/%3E%3C/svg%3E"),
-    /* Base gradient for depth */
-    linear-gradient(135deg, 
-      rgba(249, 67, 0, 0.01) 0%, 
-      rgba(255, 153, 154, 0.02) 40%, 
+    linear-gradient(
+      135deg,
+      rgba(249, 67, 0, 0.01) 0%,
+      rgba(255, 153, 154, 0.02) 40%,
       rgba(255, 255, 231, 0.015) 70%,
       rgba(255, 153, 154, 0.01) 100%
     );
 }
 
-/* Non-uniform border for Type1 - different angle & pattern */
 .countdownBoxType1::before {
-  background: 
-    conic-gradient(from 60deg at 35% 25%,
+  background:
+    conic-gradient(
+      from 60deg at 35% 25%,
       rgba(255, 255, 255, 0) 0deg,
       rgba(255, 153, 154, 0.6) 50deg,
       rgba(255, 255, 255, 0.9) 110deg,
@@ -389,7 +367,8 @@
       rgba(255, 255, 231, 0.9) 280deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(120deg,
+    linear-gradient(
+      120deg,
       transparent 0%,
       rgba(255, 153, 154, 0.4) 20%,
       transparent 45%,
@@ -398,33 +377,32 @@
     );
 }
 
-/* Type 2: Hours & Secs - Layered cream background with depth */
 .countdownBoxType2 {
-  background: 
-    /* Noise texture overlay */
+  background:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.01'/%3E%3C/svg%3E"),
-    /* Base gradient for depth */
-    linear-gradient(140deg, 
-      rgba(255, 153, 154, 0.015) 0%, 
-      rgba(255, 255, 231, 0.02) 35%, 
+    linear-gradient(
+      140deg,
+      rgba(255, 153, 154, 0.015) 0%,
+      rgba(255, 255, 231, 0.02) 35%,
       rgba(255, 255, 231, 0.01) 65%,
       rgba(255, 153, 154, 0.008) 100%
     );
 }
 
-/* Non-uniform border for Type2 - different angle & pattern */
 .countdownBoxType2::before {
-  background: 
-    conic-gradient(from 80deg at 40% 30%,
+  background:
+    conic-gradient(
+      from 80deg at 40% 30%,
       rgba(255, 255, 255, 0) 0deg,
-      rgba(255, 255, 231, 0.0) 70deg,
+      rgba(255, 255, 231, 0) 70deg,
       rgba(255, 255, 255, 0.5) 130deg,
       rgba(255, 153, 154, 0.3) 190deg,
       rgba(255, 255, 255, 0) 240deg,
       rgba(255, 255, 231, 0.5) 300deg,
       rgba(255, 255, 255, 0) 360deg
     ),
-    linear-gradient(130deg,
+    linear-gradient(
+      130deg,
       transparent 0%,
       rgba(255, 255, 231, 0.5) 15%,
       transparent 40%,
@@ -433,7 +411,6 @@
     );
 }
 
-/* Enhanced hover state with richer effects */
 .countdownBox:hover {
   transform: translateY(-3px);
 }
@@ -451,19 +428,18 @@
   font-family: var(--font-archivo);
   font-size: clamp(1.2rem, 3.5dvh, 2.5rem);
   font-weight: 900;
-  color: #FFFFE7;
+  color: #ffffe7;
 }
 
 .timerLabel {
   font-family: var(--font-archivo);
   font-size: clamp(0.5rem, 1.1dvh, 0.85rem);
   font-weight: 700;
-  color: #FF999A;
+  color: #ff999a;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-/* ===== BUTTON CONTAINER ===== */
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -473,8 +449,8 @@
 .registerButton {
   font-family: var(--font-lexend);
   padding: clamp(0.55rem, 1.2dvh, 0.85rem) clamp(1.5rem, 3vw, 2.5rem);
-  background-color: #FFE14D;
-  color: #06061F;
+  background-color: #ffe14d;
+  color: #06061f;
   font-weight: bold;
   font-size: clamp(0.85rem, 1.8dvh, 1.1rem);
   border-radius: 0.5rem;
@@ -488,10 +464,9 @@
   transform: scale(1.05);
 }
 
-/* ===== EFFECTS ===== */
 .starGlow {
-  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6)) 
-          drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6))
+    drop-shadow(0 0 12px rgba(255, 150, 50, 0.4));
 }
 
 @keyframes rotate {
@@ -504,7 +479,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0px);
   }
   25% {
@@ -518,7 +494,8 @@
   }
 }
 @keyframes floatLeft {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-30px);
   }
 
@@ -528,7 +505,8 @@
 }
 
 @keyframes floatRight {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(30px);
   }
 
@@ -537,7 +515,6 @@
   }
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .pageContainer {
     width: 100%;
@@ -582,30 +559,6 @@
   }
 }
 
-
-
-.B2Red{
-  border: 2px solid red;
-}
-.B2Green{
-  border: 2px solid green;
-}
-.B2Blue{
-  border: 2px solid blue;
-}
-.B2Black{
-  border: 2px solid black;
-}
-.B2White{
-  border: 2px solid white;
-}
-.B2sgreen{
-  border: 2px solid rgb(79, 143, 107);
-}
-
-/* ============================================
-   TRANSITION DIVIDER
-   ============================================ */
 .transitionDivider {
   height: 8em;
   width: 100%;
@@ -619,9 +572,7 @@
   );
   pointer-events: none;
 }
-/* ============================================
-   POWERED BY SECTION
-   ============================================ */
+
 .poweredBySection {
   display: flex;
   flex-direction: column;
@@ -632,10 +583,10 @@
 .poweredByHeading {
   font-family: "PressStart2P", monospace;
   font-size: 1.5rem;
-  color: #FF999A;
+  color: #ff999a;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  text-shadow: 
+  text-shadow:
     0 0 20px rgba(255, 153, 154, 0.4),
     0 0 40px rgba(255, 153, 154, 0.2);
   font-weight: 400;
@@ -651,9 +602,6 @@
   flex-wrap: wrap;
 }
 
-/* ============================================
-   EVENTS SECTION
-   ============================================ */
 .eventsSection {
   display: flex;
   flex-direction: column;
@@ -665,10 +613,10 @@
 .eventsHeading {
   font-family: "PressStart2P", monospace;
   font-size: 2rem;
-  color: #00E5FF;
+  color: #00e5ff;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  text-shadow: 
+  text-shadow:
     0 0 25px rgba(0, 229, 255, 0.5),
     0 0 50px rgba(0, 229, 255, 0.3),
     0 0 75px rgba(0, 229, 255, 0.15);
@@ -684,9 +632,6 @@
   max-width: 28rem;
 }
 
-/* ============================================
-   ABOUT + CONTACT SECTION
-   ============================================ */
 .aboutSection,
 .contactSection {
   display: flex;
@@ -723,7 +668,11 @@
   padding: 0.95rem 1.1rem;
   border-radius: 0.65rem;
   border: 1px solid rgba(255, 255, 231, 0.18);
-  background: linear-gradient(140deg, rgba(255, 153, 154, 0.07), rgba(255, 255, 231, 0.03));
+  background: linear-gradient(
+    140deg,
+    rgba(255, 153, 154, 0.07),
+    rgba(255, 255, 231, 0.03)
+  );
 }
 
 .contactHeading {
@@ -747,11 +696,6 @@
   gap: 1rem;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-/* Tablet */
 @media (max-width: 768px) {
   .poweredByHeading {
     font-size: 1.2rem;
@@ -786,7 +730,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .poweredBySection {
     margin-top: 2rem;

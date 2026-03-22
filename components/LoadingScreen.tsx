@@ -11,7 +11,6 @@ export default function LoadingScreen() {
   const [glitchComplete, setGlitchComplete] = useState(false);
   const startedRef = useRef(false);
 
-  // Glitch animation on the title
   useEffect(() => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
     const original = "ASCENT";
@@ -38,7 +37,6 @@ export default function LoadingScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  // Preload all critical assets
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -52,14 +50,13 @@ export default function LoadingScreen() {
     };
   }, []);
 
-  // When assets are ready AND glitch intro finished → enter site automatically (no button)
   useEffect(() => {
-    if (!isLoaded || !glitchComplete || isGameStarted || startedRef.current) return;
+    if (!isLoaded || !glitchComplete || isGameStarted || startedRef.current)
+      return;
     startedRef.current = true;
     startGame();
   }, [isLoaded, glitchComplete, isGameStarted, startGame]);
 
-  // Hide overlay after transition once the "game" (site) has started
   useEffect(() => {
     if (!isGameStarted) return;
     const t = setTimeout(() => setVisible(false), 800);
@@ -84,7 +81,6 @@ export default function LoadingScreen() {
         overflow: "hidden",
       }}
     >
-      {/* Scanlines overlay */}
       <div
         style={{
           position: "absolute",
@@ -96,7 +92,6 @@ export default function LoadingScreen() {
         }}
       />
 
-      {/* Grid background */}
       <div
         style={{
           position: "absolute",
@@ -110,7 +105,6 @@ export default function LoadingScreen() {
         }}
       />
 
-      {/* Vignette */}
       <div
         style={{
           position: "absolute",
@@ -131,7 +125,6 @@ export default function LoadingScreen() {
           padding: "0 32px",
         }}
       >
-        {/* Badge */}
         <div
           style={{
             fontSize: 11,
@@ -145,7 +138,6 @@ export default function LoadingScreen() {
           ◆ SCALER PRESENTS ◆
         </div>
 
-        {/* Big glitch title */}
         <div
           style={{
             fontSize: "clamp(72px, 14vw, 120px)",
@@ -163,7 +155,6 @@ export default function LoadingScreen() {
           }}
         >
           {glitchText}
-          {/* Glitch copies */}
           <span
             style={{
               position: "absolute",
@@ -192,19 +183,6 @@ export default function LoadingScreen() {
           </span>
         </div>
 
-        {/* <div
-          style={{
-            fontSize: 13,
-            letterSpacing: "0.35em",
-            color: "rgba(255,255,255,0.4)",
-            marginBottom: 56,
-            textTransform: "uppercase",
-          }}
-        >
-          TECHFEST 2026 — SCALER ACADEMY
-        </div> */}
-
-        {/* Progress bar */}
         <div style={{ marginBottom: 32 }}>
           <div
             style={{
