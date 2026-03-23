@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Twitter } from "lucide-react";
+import { Instagram, Twitter, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -39,6 +39,17 @@ export function Footer() {
             >
               <Twitter className="h-3.5 w-3.5" />
               <span>X</span>
+            </Link>
+
+            <Link
+              href="https://www.linkedin.com/in/ascent-sst-1981473b8/"
+              aria-label="Visit us on LinkedIn"
+              className="flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-white/80 transition hover:border-blue-400/60 hover:text-blue-300"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Linkedin className="h-3.5 w-3.5" />
+              <span>LinkedIn</span>
             </Link>
           </div>
 
