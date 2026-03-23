@@ -50,11 +50,11 @@ function playStaticSound(duration: number): () => void {
   const gain = ctx.createGain();
   const t = ctx.currentTime;
   const rampUp = durationSec * 0.08;
-  const holdEnd = durationSec * 0.28;
+  const holdEnd = durationSec * 0.15;
 
   gain.gain.setValueAtTime(0, t);
-  gain.gain.linearRampToValueAtTime(0.28, t + rampUp);
-  gain.gain.setValueAtTime(0.28, t + holdEnd);
+  gain.gain.linearRampToValueAtTime(0.07, t + rampUp);
+  gain.gain.setValueAtTime(0.07, t + holdEnd);
   gain.gain.linearRampToValueAtTime(0, t + durationSec);
 
   source.connect(bp);

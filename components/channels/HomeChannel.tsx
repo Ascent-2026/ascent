@@ -6,24 +6,25 @@ import styles from "@/styles/homepage.module.css";
 import { EventCard } from "@/components/ui/EventCard";
 import { PoweredBox } from "@/components/ui/PoweredBox";
 import { ContactCard } from "@/components/ui/ContactCard";
+import { Footer } from "@/components/Footer";
 
 const CONTACT_MEMBERS = [
   {
-    name: "Aarav Sharma",
-    role: "Sponsorship & Partnerships",
-    email: "aarav.sharma@ascent2026.in",
+    name: "Priyam Ghosh",
+    role: "PR & Media",
+    email: "+91 82605 17343",
     accent: "orange" as const,
   },
   {
-    name: "Ira Mehta",
-    role: "Events & Operations",
-    email: "ira.mehta@ascent2026.in",
+    name: "Srinidhi Naren",
+    role: "Logs & Operations",
+    email: "+91 89047 02009",
     accent: "cyan" as const,
   },
   {
-    name: "Dev Patel",
-    role: "Media & Outreach",
-    email: "dev.patel@ascent2026.in",
+    name: "Hardik Jumnani",
+    role: "Sponsorships",
+    email: "+91 99071 22212",
     accent: "pink" as const,
   },
 ];
@@ -122,7 +123,7 @@ export function HomeChannel() {
                       priority
                     />
                   </div>
-                  <h3 className={styles.subtitle}>CHANGE THE ORDINARY</h3>
+                  <h3 className={styles.subtitle}>ESCAPE THE ORDINARY</h3>
                 </div>
 
                 <div className={styles.cloudRight}>
@@ -257,67 +258,6 @@ export function HomeChannel() {
 
       <div className={styles.transitionDivider} />
 
-      <div className={styles.poweredBySection}>
-        <h2 className={styles.poweredByHeading}>POWERED BY</h2>
-
-        <div className={styles.logoBoxesContainer}>
-          <PoweredBox />
-          <PoweredBox />
-          <PoweredBox />
-          <PoweredBox />
-          <PoweredBox />
-        </div>
-      </div>
-
-      <div className={styles.eventsSection}>
-        <h2 className={styles.eventsHeading}>EVENTS</h2>
-
-        <div className={styles.eventListContainer}>
-          <EventCard
-            title="Opening Ceremony"
-            day={1}
-            time="10:00 AM"
-            status="upcoming"
-            dotColor="#FF6B6B"
-          />
-          <EventCard
-            title="AI Showdown"
-            day={1}
-            time="2:00 PM"
-            status="live"
-            dotColor="#4ECDC4"
-          />
-          <EventCard
-            title="Retro Game Jam"
-            day={1}
-            time="5:00 PM"
-            status="past"
-            dotColor="#FFE66D"
-          />
-          <EventCard
-            title="Cyberpunk Fashion Show"
-            day={2}
-            time="1:00 PM"
-            status="live"
-            dotColor="#FF6B9D"
-          />
-          <EventCard
-            title="Robot Dance-Off"
-            day={2}
-            time="4:00 PM"
-            status="past"
-            dotColor="#FF8C42"
-          />
-          <EventCard
-            title="Closing Gala"
-            day={3}
-            time="7:00 PM"
-            status="live"
-            dotColor="#4ECDC4"
-          />
-        </div>
-      </div>
-
       <div className={styles.aboutSection}>
         <h2 className={styles.aboutHeading}>ABOUT US</h2>
         <p className={styles.aboutText}>
@@ -342,6 +282,7 @@ export function HomeChannel() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
