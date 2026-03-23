@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col gap-1">
           <p className="font-semibold tracking-wide text-white/80">AScent 2026</p>
           <p className="text-[11px] sm:text-xs">
-            Contact: <span className="font-medium">ascent@christuniversity.in</span>
+            Contact: <span className="font-medium">festcouncil_ascent@scaler.com</span>
           </p>
           <p className="text-[11px] sm:text-xs">
             Venue: Scaler School Of Technology, Bangalore
