@@ -135,7 +135,7 @@ export default function LoadingScreen() {
             textTransform: "uppercase",
           }}
         >
-          ◆ SCALER PRESENTS ◆
+          ◆ SCALER SCHOOL OF TECHNOLOGY PRESENTS ◆
         </div>
 
         <div

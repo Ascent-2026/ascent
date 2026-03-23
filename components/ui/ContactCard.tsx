@@ -4,13 +4,15 @@ interface ContactCardProps {
   name: string;
   role: string;
   email: string;
-  accent?: "orange" | "cyan" | "pink";
+  phone?: string;
+  accent?: "orange" | "cyan" | "pink" | "purple";
 }
 
 export function ContactCard({
   name,
   role,
   email,
+  phone,
   accent = "orange",
 }: ContactCardProps) {
   return (
@@ -39,6 +41,11 @@ export function ContactCard({
         <a href={`mailto:${email}`} className={styles.emailLink}>
           {email}
         </a>
+        {phone && (
+          <a href={`tel:${phone}`} className={styles.phoneLink}>
+            {phone}
+          </a>
+        )}
       </div>
     </article>
   );
