@@ -261,7 +261,7 @@ export function HomeChannel() {
       <div className={styles.aboutSection}>
         <h2 className={styles.aboutHeading}>ABOUT US</h2>
         <p className={styles.aboutText}>
-          AScent 2026 brings creators, coders, and innovators together for a
+          Ascent 2026 brings creators, coders, and innovators together for a
           high-energy three-day experience. From hands-on challenges to live
           showcases, the event is designed to help ideas move from concept to
           impact in a bold retro-futuristic setting.
