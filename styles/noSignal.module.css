@@ -94,6 +94,17 @@
   animation: cursorBlink 1s steps(1) infinite;
 }
 
+@media (max-width: 900px) {
+  .noSignal {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .content {
+    max-height: none;
+  }
+}
+
 @keyframes barsDrift {
   from {
     background-position-y: 0;
