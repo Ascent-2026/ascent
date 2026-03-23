@@ -1,4 +1,5 @@
 import styles from "@/styles/about.module.css";
+import { Footer } from "@/components/Footer";
 
 const TEAM_MEMBERS = [
   { name: "Name of the Member" },
@@ -35,7 +36,7 @@ export function AboutChannel() {
           </p>
         </div>
 
-        <h2 className={styles.teamHeading}>Meet Our Team</h2>
+        {/*<h2 className={styles.teamHeading}>Meet Our Team</h2>
         <div className={styles.teamSection}>
           <div className={styles.sectionLabel}>
             <span className={styles.sectionDot} />
@@ -50,8 +51,9 @@ export function AboutChannel() {
               </div>
             ))}
           </div>
-        </div>
+        </div>*/}
       </div>
+      <Footer />
     </div>
   );
 }
