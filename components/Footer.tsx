@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="mt-8 w-full border-t border-white/10 bg-black/40 px-4 py-4 text-xs text-white/70 backdrop-blur-md sm:px-8 sm:text-sm">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
-          <p className="font-semibold tracking-wide text-white/80">AScent 2026</p>
+          <p className="font-semibold tracking-wide text-white/80">Ascent 2026</p>
           <p className="text-[11px] sm:text-xs">
             Contact: <span className="font-medium">festcouncil_ascent@scaler.com</span>
           </p>
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           <p className="text-[10px] text-white/40 sm:text-[11px]">
-            © {new Date().getFullYear()} AScent. All rights reserved.
+            © {new Date().getFullYear()} Ascent. All rights reserved.
           </p>
         </div>
       </div>

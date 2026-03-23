@@ -48,7 +48,10 @@
   align-items: center;
   gap: 1rem;
   text-align: center;
-  padding: 2rem;
+  padding: clamp(1rem, 2.2vh, 2rem) clamp(1.2rem, 2.6vw, 2.5rem);
+  max-width: min(520px, 96%);
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
 .icon {
