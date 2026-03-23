@@ -10,23 +10,34 @@ import { Footer } from "@/components/Footer";
 
 const CONTACT_MEMBERS = [
   {
-    name: "Priyam Ghosh",
-    role: "PR & Media",
-    email: "+91 82605 17343",
+    name: "Sayed Zahur Zaidi",
+    role: "Events",
+    email: "events_ascent@scaler.com",
+    phone: "+91 88107 49211",
     accent: "orange" as const,
   },
   {
     name: "Srinidhi Naren",
-    role: "Logs & Operations",
-    email: "+91 89047 02009",
+    role: "Hospitality",
+    email: "hospitality_ascent@scaler.com",
+    phone: "+91 89047 02009",
     accent: "cyan" as const,
   },
   {
     name: "Hardik Jumnani",
     role: "Sponsorships",
-    email: "+91 99071 22212",
+    email: "partnerships_ascent@scaler.com",
+    phone: "+91 99071 22212",
     accent: "pink" as const,
   },
+  {
+    name: "Priyam Ghosh",
+    role: "PR & Marketing",
+    email: "prm_ascent@scaler.com",
+    phone: "+91 82605 17343",
+    accent: "purple" as const,
+
+  }
 ];
 
 export function HomeChannel() {
@@ -277,6 +288,7 @@ export function HomeChannel() {
               name={member.name}
               role={member.role}
               email={member.email}
+              phone={member.phone}
               accent={member.accent}
             />
           ))}
