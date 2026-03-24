@@ -175,6 +175,19 @@
   margin-left: -3%;
 }
 
+.presenterText {
+  margin: 0;
+  font-family: var(--font-jersey10);
+  font-size: clamp(1rem, 1.2rem, 1.5rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffb173;
+  text-align: center;
+  text-shadow:
+    0 0 12px rgba(255, 130, 55, 0.5),
+    0 0 24px rgba(255, 130, 55, 0.25);
+}
+
 .mainTitle {
   display: flex;
   align-items: center;

@@ -124,6 +124,9 @@ export function HomeChannel() {
                 </div>
 
                 <div className={styles.titleContainer}>
+                  <p className={styles.presenterText}>
+                    SCALER SCHOOL OF TECHNOLOGY PRESENTS
+                  </p>
                   <div className={styles.mainTitle}>
                     <Image
                       src="/assets/MainLogo.png"
