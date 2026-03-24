@@ -322,7 +322,7 @@
   top: 50%;
   left: 0;
   right: 0;
-  transform: translateY(calc(-50% + 27px));
+  transform: translateY(calc(-50% + 24px));
   background: transparent;
   border: none;
   box-shadow: none;
