@@ -137,7 +137,7 @@ export function HomeChannel() {
                       priority
                     />
                   </div>
-                  <h3 className={styles.subtitle}>ESCAPE THE ORDINARY</h3>
+                  <h3 className={styles.subtitle}>CHANGE THE ORDINARY</h3>
                 </div>
 
                 <div className={styles.cloudRight}>
