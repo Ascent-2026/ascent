@@ -129,7 +129,7 @@ export function HomeChannel() {
                   </p>
                   <div className={styles.mainTitle}>
                     <Image
-                      src="/assets/MainLogo.png"
+                      src="/assets/MainLogo2.svg"
                       alt="ASCENT"
                       width={800}
                       height={200}
@@ -137,7 +137,7 @@ export function HomeChannel() {
                       priority
                     />
                   </div>
-                  <h3 className={styles.subtitle}>ESCAPE THE ORDINARY</h3>
+                  <h3 className={styles.subtitle}>CHANGE THE ORDINARY</h3>
                 </div>
 
                 <div className={styles.cloudRight}>
