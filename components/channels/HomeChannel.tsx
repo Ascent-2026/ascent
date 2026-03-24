@@ -129,7 +129,7 @@ export function HomeChannel() {
                   </p>
                   <div className={styles.mainTitle}>
                     <Image
-                      src="/assets/MainLogo.png"
+                      src="/assets/MainLogo2.svg"
                       alt="ASCENT"
                       width={800}
                       height={200}
