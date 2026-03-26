@@ -1,16 +1,16 @@
 import styles from "@/styles/about.module.css";
 import { Footer } from "@/components/Footer";
+import Image from "next/image";
 
 const TEAM_MEMBERS = [
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
-  { name: "Name of the Member" },
+  { name: "Divijaa Arjun", photo: "/assets/team/Divija.jpg", objectPosition: "top" },
+  { name: "Eshita Yalawatti", photo: "/assets/team/Eshita.JPG", objectPosition: "center" },
+  { name: "Hardik Jumnani", photo: "/assets/team/Hardik.jpg", objectPosition: "top" },
+  { name: "Priyam Ghosh", photo: "/assets/team/Priyam.jpg", objectPosition: "center" },
+  { name: "Srinidhi Narendran", photo: "/assets/team/Srinidhi.png", objectPosition: "center" },
+  { name: "Krish Jaiswal", photo: "/assets/team/Venky.png", objectPosition: "center" },
+  { name: "Vibhu Khullar", photo: "/assets/team/Vibhu.png", objectPosition: "top" },
+  { name: "Sauhard Gupta", photo: "/assets/team/Sauhard.jpg", objectPosition: "center" },
 ];
 
 export function AboutChannel() {
@@ -36,7 +36,7 @@ export function AboutChannel() {
           </p>
         </div>
 
-        {/*<h2 className={styles.teamHeading}>Meet Our Team</h2>
+        <h2 className={styles.teamHeading}>Meet Our Team</h2>
         <div className={styles.teamSection}>
           <div className={styles.sectionLabel}>
             <span className={styles.sectionDot} />
@@ -46,12 +46,22 @@ export function AboutChannel() {
           <div className={styles.memberGrid}>
             {TEAM_MEMBERS.map((member, i) => (
               <div key={i} className={styles.memberCard}>
-                <div className={styles.memberPhoto} />
+                <div className={styles.memberPhoto}>
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 200px"
+                      style={{ objectFit: "cover", objectPosition: member.objectPosition, borderRadius: "inherit" }}
+                    />
+                  ) : null}
+                </div>
                 <div className={styles.memberName}>{member.name}</div>
               </div>
             ))}
           </div>
-        </div>*/}
+        </div>
       </div>
       <Footer />
     </div>

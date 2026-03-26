@@ -10,10 +10,24 @@ export function Footer() {
         <div className="flex flex-col gap-1">
           <p className="font-semibold tracking-wide text-white/80">Ascent 2026</p>
           <p className="text-[11px] sm:text-xs">
-            Contact: <span className="font-medium">festcouncil_ascent@scaler.com</span>
+            Contact:{" "}
+            <a
+              href="mailto:festcouncil_ascent@scaler.com"
+              className="font-medium transition hover:text-cyan-300"
+            >
+              festcouncil_ascent@scaler.com
+            </a>
           </p>
           <p className="text-[11px] sm:text-xs">
-            Venue: Scaler School Of Technology, Bangalore
+            Venue:{" "}
+            <a
+              href="https://www.google.com/maps/dir//Scaler+School+of+Technology,+14,+3rd+cross,+Parappana+Agrahar,+Electronic+City+Rd,+Electronic+City+Phase+I,+Electronic+City,+Bengaluru,+Karnataka+560100/@12.8462945,77.6650655,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bae6d6ab07d151b:0xc0af49ccfc84871a!2m2!1d77.6646949!2d12.8386185?entry=ttu&g_ep=EgoyMDI2MDMyMy4xIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium transition hover:text-cyan-300"
+            >
+              Scaler School Of Technology, Bangalore
+            </a>
           </p>
         </div>
 

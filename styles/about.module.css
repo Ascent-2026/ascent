@@ -93,9 +93,11 @@
 }
 
 .memberPhoto {
+  position: relative;
   flex: 1;
   min-height: 140px;
   background: #1a1030;
+  overflow: hidden;
 }
 
 .memberName {
