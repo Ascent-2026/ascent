@@ -9,7 +9,7 @@ const TEAM_MEMBERS = [
   { name: "Priyam Ghosh", role: "PR and Marketing", photo: "/assets/team/Priyam.jpg", objectPosition: "center" },
   { name: "Srinidhi Narendran", role: "Hospitality", photo: "/assets/team/Srinidhi.png", objectPosition: "center" },
   { name: "Krish Jaiswal", role: "Security and Strategy", photo: "/assets/team/Venky.png", objectPosition: "center" },
-  { name: "Vibhu Khullar", role: "Finance", photo: "/assets/team/Vibhu.png", objectPosition: "top" },
+  { name: "Vibhu Khullar", role: "Finance", photo: "/assets/team/Vibhu.png", objectPosition: "center" },
   { name: "Sauhard Gupta", role: "Technicals", photo: "/assets/team/Sauhard.jpg", objectPosition: "center" },
 ];
 
