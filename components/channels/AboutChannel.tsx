@@ -3,14 +3,14 @@ import { Footer } from "@/components/Footer";
 import Image from "next/image";
 
 const TEAM_MEMBERS = [
-  { name: "Divijaa Arjun", photo: "/assets/team/Divija.jpg", objectPosition: "top" },
-  { name: "Eshita Yalawatti", photo: "/assets/team/Eshita.JPG", objectPosition: "center" },
-  { name: "Hardik Jumnani", photo: "/assets/team/Hardik.jpg", objectPosition: "top" },
-  { name: "Priyam Ghosh", photo: "/assets/team/Priyam.jpg", objectPosition: "center" },
-  { name: "Srinidhi Narendran", photo: "/assets/team/Srinidhi.png", objectPosition: "center" },
-  { name: "Krish Jaiswal", photo: "/assets/team/Venky.png", objectPosition: "center" },
-  { name: "Vibhu Khullar", photo: "/assets/team/Vibhu.png", objectPosition: "top" },
-  { name: "Sauhard Gupta", photo: "/assets/team/Sauhard.jpg", objectPosition: "center" },
+  { name: "Divijaa Arjun", role: "Creatives", photo: "/assets/team/Divija.jpg", objectPosition: "top" },
+  { name: "Eshita Yalawatti", role: "Ops and Logs", photo: "/assets/team/Eshita.JPG", objectPosition: "center" },
+  { name: "Hardik Jumnani", role: "Sponsorships", photo: "/assets/team/Hardik.jpg", objectPosition: "top" },
+  { name: "Priyam Ghosh", role: "PR and Marketing", photo: "/assets/team/Priyam.jpg", objectPosition: "center" },
+  { name: "Srinidhi Narendran", role: "Hospitality", photo: "/assets/team/Srinidhi.png", objectPosition: "center" },
+  { name: "Krish Jaiswal", role: "Security and Strategy", photo: "/assets/team/Venky.png", objectPosition: "center" },
+  { name: "Vibhu Khullar", role: "Finance", photo: "/assets/team/Vibhu.png", objectPosition: "top" },
+  { name: "Sauhard Gupta", role: "Technicals", photo: "/assets/team/Sauhard.jpg", objectPosition: "center" },
 ];
 
 export function AboutChannel() {
@@ -58,6 +58,7 @@ export function AboutChannel() {
                   ) : null}
                 </div>
                 <div className={styles.memberName}>{member.name}</div>
+                <div className={styles.memberRole}>{member.role}</div>
               </div>
             ))}
           </div>
