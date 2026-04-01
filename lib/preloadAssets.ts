@@ -13,6 +13,15 @@ export const PRELOAD_ASSET_URLS: string[] = [
   "/assets/MainLogo.png",
   "/assets/star-middle.png",
   "/assets/cloud-multiple.png",
+  // Team member photos — preloaded so About channel is instant
+  "/assets/team/Divija.jpg",
+  "/assets/team/Eshita.JPG",
+  "/assets/team/Hardik.jpg",
+  "/assets/team/Priyam.jpg",
+  "/assets/team/Srinidhi.png",
+  "/assets/team/Venky.png",
+  "/assets/team/Vibhu.png",
+  "/assets/team/Sauhard.jpg",
 ];
 
 async function preloadOne(url: string): Promise<void> {
