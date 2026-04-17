@@ -170,3 +170,60 @@
   color: #fff;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
+
+.eventsSection {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  color: #e6edf7;
+}
+
+.eventsHeaderRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  max-width: 72rem;
+  margin: 0 auto 2rem;
+}
+
+.eventsHeading {
+  font-family: var(--font-jersey10);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.eventsSeeAll {
+  font-family: var(--font-archivo);
+  font-size: 0.95rem;
+  color: #7fb2ff;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.25rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.eventCard {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #1a2238;
+  border: 1px solid rgba(127, 178, 255, 0.15);
+}
+
+.eventCardName {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+  font-family: var(--font-archivo);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
