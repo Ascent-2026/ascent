@@ -4,6 +4,7 @@ import { BiggestTechfest } from "@/components/landing/BiggestTechfest";
 import { EventsSection } from "@/components/landing/EventsSection";
 import { RegisterSection } from "@/components/landing/RegisterSection";
 import { AboutSection } from "@/components/landing/AboutSection";
+import { PartnersSection } from "@/components/landing/PartnersSection";
 
 export default function LandingPreview() {
   return (
@@ -14,6 +15,7 @@ export default function LandingPreview() {
       <EventsSection />
       <RegisterSection />
       <AboutSection />
+      <PartnersSection />
     </>
   );
 }

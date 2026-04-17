@@ -315,3 +315,40 @@
   line-height: 1.6;
   color: #b8c7e0;
 }
+
+.partnersSection {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  color: #e6edf7;
+  text-align: center;
+}
+
+.partnersHeading {
+  font-family: var(--font-jersey10);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.partnersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.partnerCell {
+  background: rgba(18, 32, 54, 0.6);
+  border: 1px solid rgba(127, 178, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  font-family: var(--font-archivo);
+  font-size: 0.9rem;
+  color: #b8c7e0;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
