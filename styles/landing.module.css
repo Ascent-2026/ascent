@@ -1,0 +1,377 @@
+.introRail {
+  position: relative;
+  width: 100%;
+  height: 700vh;
+  background: #000;
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: opacity, transform;
+  opacity: 0;
+  transform: scale(1);
+}
+
+.sceneFirst {
+  opacity: 1;
+}
+
+.introOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.introBadge {
+  pointer-events: auto;
+}
+
+.skipButton {
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-family: var(--font-archivo);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.skipButton:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.introRailReduced {
+  height: 100vh;
+}
+
+.introRailReduced .scene {
+  opacity: 0;
+}
+
+.introRailReduced .scene[data-scene-index="4"] {
+  opacity: 1;
+}
+
+.phaseTwoStart {
+  position: relative;
+  background: radial-gradient(ellipse at top, #0c1a2e 0%, #050913 100%);
+  color: #e6edf7;
+  padding: clamp(4rem, 10vh, 8rem) clamp(1rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.countdownLabel {
+  font-family: var(--font-archivo);
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  letter-spacing: 0.2em;
+  color: #7fb2ff;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.countdownGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.5vw, 1.5rem);
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.countdownTile {
+  background: rgba(18, 32, 54, 0.8);
+  border: 1px solid rgba(127, 178, 255, 0.2);
+  border-radius: 0.75rem;
+  padding: clamp(1rem, 3vh, 2rem) 1rem;
+}
+
+.countdownValue {
+  font-family: var(--font-jersey10);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: #fff;
+}
+
+.countdownUnit {
+  font-family: var(--font-archivo);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  letter-spacing: 0.25em;
+  color: #7fb2ff;
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+}
+
+.bigFestSection {
+  padding: clamp(2rem, 6vh, 5rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+}
+
+.bigFestCard {
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.bigFestImage {
+  object-fit: cover;
+}
+
+.bigFestRibbon {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-archivo);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+.bigFestHeadline {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  font-family: var(--font-jersey10);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.eventsSection {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  color: #e6edf7;
+}
+
+.eventsHeaderRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  max-width: 72rem;
+  margin: 0 auto 2rem;
+}
+
+.eventsHeading {
+  font-family: var(--font-jersey10);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.eventsSeeAll {
+  font-family: var(--font-archivo);
+  font-size: 0.95rem;
+  color: #7fb2ff;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.25rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.eventCard {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #1a2238;
+  border: 1px solid rgba(127, 178, 255, 0.15);
+}
+
+.eventCardName {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+  font-family: var(--font-archivo);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.registerSection {
+  padding: clamp(4rem, 10vh, 7rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  display: flex;
+  justify-content: center;
+}
+
+.registerPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #1a2442 0%, #0d1628 100%);
+  border: 1px solid rgba(127, 178, 255, 0.3);
+  border-radius: 999px;
+  padding: 1rem 1rem 1rem 2.5rem;
+  font-family: var(--font-jersey10);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.registerPill:hover {
+  transform: translateY(-2px);
+}
+
+.registerBadge {
+  width: clamp(3rem, 6vw, 4.5rem);
+  height: clamp(3rem, 6vw, 4.5rem);
+  border-radius: 50%;
+  background: #4a3af4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-archivo);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.aboutSection {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  color: #e6edf7;
+}
+
+.aboutHeading {
+  font-family: var(--font-jersey10);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.aboutPanel {
+  background: rgba(26, 36, 66, 0.6);
+  border: 1px solid rgba(127, 178, 255, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-height: 16rem;
+}
+
+.aboutPanelTitle {
+  font-family: var(--font-jersey10);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.aboutPanelBody {
+  font-family: var(--font-archivo);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #b8c7e0;
+}
+
+.partnersSection {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem);
+  background: #050913;
+  color: #e6edf7;
+  text-align: center;
+}
+
+.partnersHeading {
+  font-family: var(--font-jersey10);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.partnersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.partnerCell {
+  background: rgba(18, 32, 54, 0.6);
+  border: 1px solid rgba(127, 178, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  font-family: var(--font-archivo);
+  font-size: 0.9rem;
+  color: #b8c7e0;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landingFooter {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 5vw, 4rem) 2rem;
+  background: #030610;
+  border-top: 1px solid rgba(127, 178, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+}
+
+.footerMark {
+  width: clamp(12rem, 30vw, 22rem);
+  height: auto;
+}
+
+.footerMeta {
+  font-family: var(--font-archivo);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: #6e8ab8;
+}
