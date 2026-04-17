@@ -93,7 +93,11 @@ export function LandingIntro() {
   );
 
   return (
-    <section ref={railRef} className={styles.introRail} aria-label="Intro cinematic">
+    <section
+      ref={railRef}
+      className={`${styles.introRail} ${reducedMotion ? styles.introRailReduced : ""}`}
+      aria-label="Intro cinematic"
+    >
       <div ref={stageRef} className={styles.stickyStage}>
         {SCENES.map((s, i) => (
           <Image
