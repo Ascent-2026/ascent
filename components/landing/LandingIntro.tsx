@@ -46,15 +46,40 @@ export function LandingIntro() {
         },
       });
 
-      // 4 crossfade segments. Scene 3 (index 2) gets a slight dwell bonus.
-      // Segment durations sum to 1. Base = 0.24, scene-3 extra = 0.04.
+      // 4 segments (scene N → scene N+1). Sum = 1.0. Scene 3 (galaxy) dwells.
       const segmentDurations = [0.24, 0.24, 0.28, 0.24];
 
       segmentDurations.forEach((dur, i) => {
         const from = scenes[i];
         const to = scenes[i + 1];
-        tl.to(from, { opacity: 0, scale: 1.06, duration: dur, ease: "none" }, ">")
-          .to(to, { opacity: 1, duration: dur, ease: "none" }, "<");
+        const segStart = tl.totalDuration();
+
+        // Outgoing: dolly forward past the camera while dimming.
+        tl.to(
+          from,
+          { scale: 1.15, duration: dur, ease: "power2.in" },
+          segStart,
+        );
+        tl.to(
+          from,
+          { opacity: 0, duration: dur, ease: "power1.in" },
+          segStart,
+        );
+
+        // Incoming: grow from behind the camera and resolve quickly so it
+        // takes over the frame before the outgoing's tail is visible.
+        tl.fromTo(
+          to,
+          { scale: 0.9 },
+          { scale: 1.0, duration: dur, ease: "power2.out" },
+          segStart,
+        );
+        tl.fromTo(
+          to,
+          { opacity: 0 },
+          { opacity: 1, duration: dur * 0.65, ease: "power1.out" },
+          segStart,
+        );
       });
 
       // Fade overlay out between 55% and 70% scroll progress.
